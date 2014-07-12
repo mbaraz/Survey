@@ -1,0 +1,66 @@
+﻿<RecentFiles>
+  <RecentFiles>
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Controllers/f:SurveyQuestionController.cs" caret="0" fromTop="0" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/f:SurveyService.cs" caret="0" fromTop="0" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:IStudentRepository.cs" caret="68" fromTop="2" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:Interview.cs" caret="5736" fromTop="22" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Models/d:Wrappers/f:AnswerVariantRestricted.cs" caret="1290" fromTop="36" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Models/d:Wrappers/f:SurveyQuestionRestricted.cs" caret="1277" fromTop="21" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Models/d:Wrappers/f:QuestionModelRestricted.cs" caret="252" fromTop="7" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:AnswerVariant.cs" caret="218" fromTop="8" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:ISurveyQuestionRepository.cs" caret="832" fromTop="15" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/f:Global.asax.cs" caret="4289" fromTop="19" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Models/f:QuestionModel.cs" caret="149" fromTop="7" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:SurveyQuestionRepository.cs" caret="2549" fromTop="15" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Models/d:Wrappers/f:SubQuestionRestricted.cs" caret="955" fromTop="25" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/f:DBSurveyRepository.cs" caret="3115" fromTop="43" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:ISubQuestionRepository.cs" caret="239" fromTop="8" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:SubQuestion.cs" caret="1298" fromTop="27" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:ITagRepository.cs" caret="189" fromTop="7" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/f:RepositoryBase.cs" caret="748" fromTop="16" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:TagValueLabel.cs" caret="316" fromTop="13" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:ITagValueLabelRepository.cs" caret="404" fromTop="10" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:SurveyQuestion.cs" caret="7867" fromTop="18" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Controllers/f:AccountController.cs" caret="4779" fromTop="19" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:App_Code/f:Roles.cshtml" caret="0" fromTop="0" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="2591" fromTop="16" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:AnswerVariantRepository.cs" caret="1214" fromTop="16" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Common/f:JSONObject.cs" caret="8882" fromTop="14" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagValueLabelRepository.cs" caret="2164" fromTop="16" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:SubQuestionRepository.cs" caret="1334" fromTop="16" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Controllers/f:FlexDataController.cs" caret="1765" fromTop="16" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/f:Web.config" caret="1786" fromTop="22" />
+  </RecentFiles>
+  <RecentEdits>
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="22" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="34" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="20" />
+    <File id="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5/d:Controllers/f:FlexDataController.cs" caret="9516" fromTop="29" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="9" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="18" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="17" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6992" fromTop="36" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="33" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:SubQuestion.cs" caret="1309" fromTop="36" />
+    <File id="13AA22CF-AB82-4BA6-B641-1F5AD3305922/f:SubQuestion.cs" caret="1298" fromTop="27" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="28" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="20" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6989" fromTop="25" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:ITagRepository.cs" caret="411" fromTop="11" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6992" fromTop="29" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="2451" fromTop="13" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6713" fromTop="22" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="5696" fromTop="7" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="4410" fromTop="9" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6375" fromTop="17" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="5254" fromTop="13" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="2716" fromTop="12" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="1802" fromTop="8" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="904" fromTop="5" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="608" fromTop="9" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="5056" fromTop="10" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagValueLabelRepository.cs" caret="1056" fromTop="14" />
+    <File id="2B496E03-02F5-4E3D-BF2E-EB185A92CD73/d:Repositories/f:TagRepository.cs" caret="6088" fromTop="18" />
+    <File id="B5A798AD-B571-40F6-9984-16A3034F5515/d:Repositories/f:ITagValueLabelRepository.cs" caret="404" fromTop="10" />
+  </RecentEdits>
+</RecentFiles>

@@ -1,0 +1,68 @@
+﻿@model SurveyWeb.Models.ProjectDetailsModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@Model.Project.SurveyProjectName</title>
+        <link href="@Url.Content("~/Content/themes/base/Print.css")" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <section id="main">
+            <h1>
+                Анкета на тему «@Model.Project.SurveyProjectName»
+            </h1>
+            <section id="description">
+                @Model.Project.ProjectUserDescription
+            </section>
+            @{
+                var i = 1;
+                foreach (var question in Model.Project.OrderedQuestions)
+                {
+                    <section class="question">
+                        <div class="question-text">@i. @Html.Raw(question.InstantText)</div>
+                        @{
+                        for (var j = 0; j < question.SubitemsStrings.Count(); j++) {
+                            <div class="sub-text">@i-@(j +1). @Html.Raw(question.SubitemsStrings.ElementAt(j))</div>
+                        }
+                        i++;
+                        }
+                        @Html.Partial("QuestionTagsInfo", question)
+                        @Html.Partial("QuestionRemark", question)
+            
+                        @foreach (var answer in question.AnswerVariants)
+                        {
+                            <div>
+                                @if (question.AnswerVariants.Count != 1 || !answer.IsOpenAnswer)
+                                {
+                                    <b>@answer.AnswerCode</b>
+                                }
+                                @Html.DisplayFor(model => answer.InstantText)
+
+                                @if (answer.IsOpenAnswer)
+                                {
+                                    <i>_______________(Запишите)</i>
+                                }
+                            </div>
+                        }
+                    </section>
+                }
+            }
+            <section id="signature" style="margin-top: 3em ">
+                <p>
+                    Руководитель темы/проекта<br/><br/>
+                    __________________ / _____________________________________ /
+                </p>
+                <p>
+                    Директор РЦ «Центр социлогических и Интернет-исследований»<br /><br/>
+                    __________________ / <u>С.М. Снопова</u> /
+                </p>
+            </section>
+        </section>
+    </body>
+</html>

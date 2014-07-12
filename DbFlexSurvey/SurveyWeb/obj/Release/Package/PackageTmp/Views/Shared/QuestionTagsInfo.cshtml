@@ -1,0 +1,14 @@
+﻿@model SurveyModel.SurveyQuestion
+
+@if (Model.BoundTag != null)
+{
+    <div>Ответ присвоить -> @Html.DisplayFor(modelModel => Model.BoundTag)</div>
+}
+@if (Model.ConditionOnTag != null)
+{
+    <div>Условие: @Html.Raw(@Html.DisplayFor(modelModel => Model.ConditionOnTag) + "&nbsp;=&nbsp;" + Html.DisplayFor(modelModel => Model.ConditionOnTagValue))</div>
+}
+@if (Model.FilterAnswersTag != null)
+{
+    <div>Фильтровать ответы: @Html.DisplayFor(modelModel => Model.FilterAnswersTag)</div>
+}

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<SurveyWeb.Models.MenuItemModel>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<ul id="menu">
+    @foreach(var item in Model)
+    {
+        <li>@Html.ActionLink(item.Text, item.Action, item.Controller)</li>
+    }
+</ul>

@@ -1,0 +1,24 @@
+﻿@model string[]
+
+@{
+    ViewBag.Title = "Выберите специализацию";
+}
+
+<h2>Укажите специализацию</h2>
+
+@using (Html.BeginForm("ShowQuestion", "Survey", new { surveyProjectId = ViewBag.SurveyProjectId, isTest = ViewBag.IsTest }))
+{
+    <input type="submit" value="Далее"/> <br/>
+
+    foreach (var item in Model)
+    {
+        string[] line = item.Split('#');
+        var checkBoxName = string.Format(ViewBag.SpecName + "{0}", line[0]);
+
+        <input type="checkbox" name="@checkBoxName" id="@checkBoxName"/>
+        <label for="@checkBoxName">@line[1]</label>
+        <br/>
+    }
+        <input type="submit" value="Далее"/>
+    
+}

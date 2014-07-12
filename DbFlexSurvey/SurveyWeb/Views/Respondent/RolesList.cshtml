@@ -1,0 +1,15 @@
+﻿@model ICollection<string>
+
+@if (Model.Any())
+{
+        <div class="display-label">Роли:</div>
+        <ul>
+            @foreach (var role in Model)
+            {
+                
+                <li>
+                    @Roles.GetDescription(role)
+                </li>
+            }
+        </ul>
+    }

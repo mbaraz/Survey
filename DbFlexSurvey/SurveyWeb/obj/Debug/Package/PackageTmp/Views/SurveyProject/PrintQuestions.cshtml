@@ -1,0 +1,49 @@
+﻿@model SurveyWeb.Models.ProjectDetailsModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@Model.Project.SurveyProjectName</title>
+        <link href="@Url.Content("~/Content/themes/base/Print.css")" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <section id="main">
+            <h1>
+                @Model.Project.SurveyProjectName
+            </h1>
+            <section id="description">
+                @Model.Project.ProjectUserDescription
+            </section>
+            @foreach (var question in Model.Project.OrderedQuestions)
+            {
+                <section class="question">
+                    <div class="question-text">@Html.Raw(question.QuestionText)</div>
+                    @Html.Partial("QuestionTagsInfo", question)
+                    @Html.Partial("QuestionRemark", question)
+            
+                    @foreach (var answer in question.AnswerVariants)
+                    {
+                        <div>
+                            @if (question.AnswerVariants.Count != 1 || !answer.IsOpenAnswer)
+                            {
+                                <b>@answer.AnswerCode</b>
+                            }
+                            @Html.DisplayFor(model => answer.AnswerText)
+
+                            @if (answer.IsOpenAnswer)
+                            {
+                                <i>_______________(Запишите)</i>
+                            }
+                        </div>
+                    }
+                </section>
+            }
+        </section>
+    </body>
+</html>

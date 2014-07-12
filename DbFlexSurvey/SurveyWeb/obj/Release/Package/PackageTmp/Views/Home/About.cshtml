@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "О нас";
+}
+
+@helper EmailTextBox(string email, string title) {
+    <a href="mailto:@email?Subject=Опрос">@title</a>    
+}
+
+<h2>О нас</h2>
+<p>
+     В настоящее время страница сайта находится в разработке.
+</p>
+<p>
+    Для оперативной связи с технической службой по поводу текущих опросов ваши обращения просим направлять по адресу: @EmailTextBox("opros.spbu@spbu.ru", "opros.spbu@spbu.ru") или по адресу Ресурсного центра "Центр социологических и Интернет-исследований": @EmailTextBox("rcsoc.spbu@spbu.ru", "rcsoc.spbu@spbu.ru")
+</p>

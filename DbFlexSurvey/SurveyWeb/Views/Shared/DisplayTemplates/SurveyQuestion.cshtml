@@ -1,0 +1,8 @@
+﻿@model SurveyModel.SurveyQuestion
+
+@if (Model!=null)
+{
+    @Html.ActionLink(Model.QuestionName, "DetailsById", "SurveyQuestion", new {Model.SurveyQuestionId}, "")
+    @String.Format(String.Format(" {0} @", Model.QuestionText))
+    @Html.DisplayFor(model => model.SurveyProject);
+}

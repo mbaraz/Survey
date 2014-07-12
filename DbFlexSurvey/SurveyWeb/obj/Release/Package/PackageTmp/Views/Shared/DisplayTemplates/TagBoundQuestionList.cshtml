@@ -1,0 +1,18 @@
+﻿@model ICollection<SurveyModel.SurveyQuestion>
+
+ @if (Model.Any())
+ {
+     <div class="display-label">@Html.LabelFor(model => model):</div>
+     <div class="display-field">
+         <ul>
+             @foreach (var question in Model)
+             {
+                 <li>
+                     @Html.ActionLink(question.QuestionName, "DetailsById", "SurveyQuestion", new {question.SurveyQuestionId}, "")
+                     @String.Format(String.Format(" {0} @", question.QuestionText))
+                     @Html.DisplayFor(model => question.SurveyProject)
+                 </li>
+             }
+         </ul>
+     </div>
+ }

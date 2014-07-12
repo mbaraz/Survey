@@ -1,0 +1,30 @@
+﻿@model SurveyWeb.Models.TagViewModel
+
+@{
+    ViewBag.Title = string.Format("Переменная «{0}»", Model.Tag.TagName) ;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>Свойства переменной</legend>
+
+    <div class="display-field">
+        @if (!Model.Tag.IsGlobal)
+        {
+            @Html.DisplayFor(model => model.Tag.SurveyProject)
+        }
+        else
+        {
+            <span>Глобальная переменная</span>
+        }
+    </div>
+                @Html.DisplayFor(model => model.BoundQuestions)
+                @Html.DisplayFor(model => model.ConditionalQuestions)
+                @Html.DisplayFor(model => model.FilteredQuestions)    
+</fieldset>
+<p>
+    @* @Html.ActionLink("Изменить", "Edit", new { Model.Tag.TagId }) | *@
+    @Html.ActionLink("Удалить", "Delete", new { Model.Tag.TagId }) |
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

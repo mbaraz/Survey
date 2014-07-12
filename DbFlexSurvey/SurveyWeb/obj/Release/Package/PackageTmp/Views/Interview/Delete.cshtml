@@ -1,0 +1,33 @@
+﻿@model SurveyModel.Interview
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Interview</legend>
+
+    <div class="display-label">RespondentId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentId)
+    </div>
+
+    <div class="display-label">SurveyProjectId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SurveyProjectId)
+    </div>
+
+    <div class="display-label">Completed</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Completed)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

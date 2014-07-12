@@ -1,0 +1,6 @@
+﻿@model SurveyModel.SurveyProject
+
+@if (Model!=null)
+{
+    @Html.ActionLink(Model.SurveyProjectName, "Details", "SurveyProject", new {Model.SurveyProjectId}, "")
+}

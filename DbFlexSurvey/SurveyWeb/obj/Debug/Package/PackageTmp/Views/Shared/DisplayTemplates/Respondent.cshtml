@@ -1,0 +1,9 @@
+﻿@model SurveyModel.Respondent
+@if (Model != null)
+{
+    @Html.ActionLink(Model.RespondentDisplayName, "Details", "Respondent", new { Model.RespondentId }, "");
+}
+else
+{
+    <span>Нет</span>
+}

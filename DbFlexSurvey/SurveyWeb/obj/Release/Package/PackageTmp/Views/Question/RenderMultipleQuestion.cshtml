@@ -1,0 +1,79 @@
+﻿@using System.Globalization
+@model SurveyWeb.Models.QuestionModel
+
+@{
+    ViewBag.Title = @Model.Question.QuestionText;
+}
+
+<script type="text/javascript">
+    $(function () {
+        $(".question-numeric").keypress(function (e) {
+            return e.which == 0 || e.which == 8 || e.which == 13 || (e.which > 47 && e.which < 58);
+        });
+    });  
+</script>
+
+<div class="question-text">@Html.Raw(Model.Question.QuestionText)</div>
+
+
+@Html.Partial("QuestionRemark", Model.Question)
+@if (Model.Question.QuestionName == "OptionalSelector"){
+    <span>Если Вы не посещали курсов по выбору, просто нажмите кнопку "<i>Далее</i>"</span>
+}    
+@Html.ValidationMessage("0")
+<br/>
+    
+@using (Html.BeginForm("Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.Question.QuestionOrder }))
+{
+    <input type="submit" value="Далее"/> <br/>
+
+    foreach (var answer in Model.AnswerVariants)
+    {
+        int maxLength = answer.SymbolCount;
+        int size = Math.Max(maxLength - 1, 1);
+        bool isNumeric = answer.IsNumeric;
+
+        var checkBoxName = string.Format("Answer_{0}", answer.AnswerCode);
+        
+        <b>@answer.AnswerCode</b>
+        var hideCheckboxForOpen = answer.IsOpenAnswer && answer.InstantText.Length == 0;
+        if (!hideCheckboxForOpen && !Model.Question.IsRankQuestion)
+        {
+            <input type="checkbox" name="@checkBoxName" id="@checkBoxName"/>
+        }
+        <label for="@checkBoxName">@answer.InstantText</label>
+        
+        if (Model.Question.IsRankQuestion)
+        {
+            for (var i = Model.Question.MaxRank; i > 0; i--)
+            {
+                <input type="radio" required name="@string.Format("Rank_{0}", answer.AnswerCode)" value="@i"/> <span>@i&nbsp;&nbsp;&nbsp;</span>
+            }
+            
+            <input type="radio" required name="@string.Format("Rank_{0}", answer.AnswerCode)" value="-1" /><span>Затрудняюсь ответить</span>
+        }
+
+        if (answer.IsOpenAnswer)
+        {
+            <i>(Запишите)</i>
+            if (isNumeric)
+            {
+                <input type="text" size="@size" maxlength="@maxLength" class="question-numeric" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+            }
+            else
+            {
+                    <input type="text" size="@size" class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+            }
+        }
+                    @Html.ValidationMessage(answer.AnswerCode.ToString(CultureInfo.InvariantCulture))
+
+        <br/>
+
+    }
+            <input type="hidden" name="questionId" value="@Model.Question.SurveyQuestionId"/>
+    <input type="submit" value="Далее"/>
+}
+@*@if (Model.PrevQuestionOrder != null)
+{
+    @Html.ActionLink("Вернуться к предыдущему вопросу", "Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.PrevQuestionOrder }, "")
+}*@

@@ -1,0 +1,41 @@
+﻿@model SurveyModel.SurveyProject
+
+@{
+    ViewBag.Title = "Добавить проект";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Свойства проекта</legend>
+
+        <div class="editor-label">
+            Название
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SurveyProjectName)
+            @Html.ValidationMessageFor(model => model.SurveyProjectName)
+        </div>
+
+        <div class="editor-label">
+            Описание
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProjectUserDescription)
+            @Html.ValidationMessageFor(model => model.ProjectUserDescription)
+        </div>
+
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("К списку", "Active")
+</div>

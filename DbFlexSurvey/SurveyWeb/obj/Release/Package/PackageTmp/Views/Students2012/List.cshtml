@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SurveyModel.Univer.StudentGroupInterviewInfo>
+
+@{
+    ViewBag.Title = "Отчет по группам";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table>
+    <tr>
+        <th>
+            Группа
+        </th>
+        <th>
+            Студенты
+        </th>
+        <th>
+            Интервью
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentGroup.DispName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentsCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewsCount)
+        </td>
+    </tr>
+}
+
+</table>

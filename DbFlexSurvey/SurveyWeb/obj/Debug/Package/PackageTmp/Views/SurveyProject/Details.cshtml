@@ -1,0 +1,161 @@
+﻿@model SurveyWeb.Models.ProjectDetailsModel
+
+@{
+    ViewBag.Title = "Проект «" + Model.Project.SurveyProjectName + "»";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>Свойства</legend>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Project.ProjectUserDescription)
+    </div>
+    @if (!Model.Project.Active)
+    {
+        <div class="display-label">Проект переведен в архив</div>
+    }
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Project.SurveyProjectId }) |
+    @Html.ActionLink("Удалить", "Delete", new { id = Model.Project.SurveyProjectId }) |
+    @Html.ActionLink("Скачать анкету для печати", "PrintQuestions", new { Model.Project.SurveyProjectId }) |
+    @Html.ActionLink("К списку проектов", "Active")
+</fieldset>
+<fieldset>
+    <legend>Результаты</legend>
+     @Html.ActionLink("Просмотреть", "Index", "Interview", new { Model.Project.SurveyProjectId }, "") | @Html.ActionLink("Скачать", "Spss", "SurveyProject", new {Model.Project.SurveyProjectId}, "")
+    <div class="display-field">
+        <table>
+            <tr>
+                <th>Закончено</th>
+                <th>В процессе</th>
+            </tr>
+            <tr>
+                <td>@Model.Project.ActualInterviews.Count(interviews => interviews.Completed)</td>
+                <td>@Model.Project.ActualInterviews.Count(interviews => !interviews.Completed)</td>
+            </tr>
+        </table>
+       
+    </div>
+</fieldset>
+<fieldset>
+    @Html.ActionLink("Пригласить", "MultiInvite", "SurveyProject", new { Model.Project.SurveyProjectId }, "")
+    <legend>Пригласить по email</legend>
+    @*   @if (ViewBag.InvitedUsers != null || ViewBag.NewUsers != null)
+    {
+        <div class="display-label">@string.Format("Приглашено {0} респондентов ({1} новых)", ViewBag.InvitedUsers, ViewBag.NewUsers)</div>
+    }
+    @using (@Html.BeginForm("InviteEmail", "SurveyProject", new { Model.Project.SurveyProjectId }))
+    {
+        <div class="display-label">Email (каждый на новой строке)</div>
+        <div class="display-field">
+            <textarea type="text" name="emails" class="text-box multi-line"></textarea>
+            <br/>
+            <input type="submit" value="Пригласить"/>
+        </div>
+    }*@
+</fieldset>
+<fieldset>
+    <legend>Ссылки-приглашения</legend>
+    <table>
+        <tr><th>Ссылка</th><th>Описание</th><th>Создана</th><th>Действует до</th><th>Зарегистрировалось</th></tr>
+        @foreach(var ticket in Model.Tickets)
+        {
+            <tr>
+                <td>@Html.ActionLink(ticket.TicketGuid.ToString(), "RegisterWithTicket", "Account", new {ticket.TicketGuid}, "")</td>
+                <td>@ticket.TicketDescription</td>
+                <td>@ticket.StartDate</td><td>@ticket.ExpireDate</td><td>@ticket.CreatedInvitations.Count</td>
+            </tr>
+        }
+    </table>
+    @Html.EditorFor(model => model.CreateTicketModel)
+    @using (Html.BeginForm("CreateTicket", "SurveyProject", new { Model.CreateTicketModel.SurveyProjectId }))
+{@*    {
+        
+        <div class="display-label">@Html.LabelFor(model => model.CreateTicketModel.Description)</div>
+        <div class="display-field">@Html.EditorFor(model => model.CreateTicketModel.Description)</div>
+        @Html.HiddenFor(model => model.CreateTicketModel.SurveyProjectId)
+        <input type="submit" value="Создать" />
+    }*@}
+</fieldset>
+<fieldset>
+    <legend>Тестовое интервью</legend>
+    @using (Html.BeginForm("Test", "Survey", new { Model.Project.SurveyProjectId }))
+    {
+            
+                <input type="submit" value="Тестовое интервью" />
+            
+    }
+</fieldset>
+<fieldset>
+    <legend>Вопросы</legend>
+
+<p>
+    @Html.ActionLink("Добавить", "Create", "SurveyQuestion", new { surveyProjectId = Model.Project.SurveyProjectId }, "")
+</p>
+<table>
+    <tr>
+
+        <th>
+            Вопрос
+        </th>
+        <th>
+            Текст
+        </th>
+        <th>
+            Тип вопроса
+        </th>
+
+        <th>
+            Дополнительно
+        </th>
+    </tr>
+
+@foreach (var item in Model.Project.OrderedQuestions)
+{
+    <tr>
+        <td>
+            @Html.ActionLink(item.QuestionName, "Details", "SurveyQuestion", new { item.QuestionOrder, Model.Project.SurveyProjectId }, "")
+        </td>
+        <td>
+            @Html.Raw(item.QuestionText)
+        </td>
+        <td>
+            @if (item.IsRankQuestion)
+            {
+                <span>Ранг&nbsp;1..@item.MaxRank</span>
+            }
+            else if (item.MultipleAnswerAllowed)
+            {
+                <span>Множественный: </span>
+                if (item.MaxAnswers != null && item.MinAnswers != null)
+                {
+                    if (item.MaxAnswers == item.MinAnswers)
+                    {
+                        <span>@item.MaxAnswers&nbsp;варианта</span>
+                    }
+                    else
+                    {
+                        <span>@item.MaxAnswers&nbsp;—&nbsp;@item.MinAnswers&nbsp;варианта</span>
+                    }
+
+                }
+                else if (item.MaxAnswers != null)
+                {
+                    <span>1..@item.MaxAnswers&nbsp;варианта</span>
+                }
+                else if (item.MinAnswers != null)
+                {
+                    <span>@item.MinAnswers+&nbsp;варианта</span>
+                }
+            }
+        </td>
+        <td>
+           @Html.Partial("QuestionTagsInfo", item)
+        </td>
+    </tr>
+}
+
+</table>
+
+</fieldset>

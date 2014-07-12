@@ -1,0 +1,48 @@
+﻿@model SurveyModel.Interview
+
+@{
+    ViewBag.Title = "Интервью";
+}
+
+<h2>Интервью</h2>
+
+<fieldset>
+    <legend>Информация о интервью</legend>
+
+    <div class="display-label">Респондент</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Respondent)
+    </div>
+
+    <div class="display-label">Интервьюер</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Interviewer)
+    </div>
+
+    <div class="display-label">Проект</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SurveyProject)
+    </div>
+
+    <div class="display-label">Завершен</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Completed)
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Ответы</legend>
+    @foreach(var answer in Model.Answers)
+    {
+        <div class="display-label"><b>@answer.SurveyQuestion.InstantText</b></div>
+        <div class="display-field">
+            @foreach(var answerPart in answer.Parts)
+            {
+                @Html.DisplayFor(model => answerPart)
+            }
+        </div>
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Удалить", "Delete", new { Model.InterviewId }) |
+    @Html.ActionLink("К списку интервью", "Index", new {Model.SurveyProjectId})
+</p>

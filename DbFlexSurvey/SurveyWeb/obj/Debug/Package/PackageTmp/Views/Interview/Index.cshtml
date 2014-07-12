@@ -1,0 +1,47 @@
+﻿@model SurveyModel.SurveyProject
+
+@{
+    ViewBag.Title = string.Format("Интервью проекта «{0}»", Model.SurveyProjectName);
+}
+
+<h2>Интервью проекта @Html.ActionLink(Model.SurveyProjectName, "Details", "SurveyProject", new {Model.SurveyProjectId}, "")</h2>
+
+<table>
+    <tr>
+        <th>
+            Респондент
+        </th>
+        <th>
+            В процессе?
+        </th>
+         <th>
+            Тестовое
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model.Interviews)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respondent)
+        </td>
+        <td>
+            @if (!item.Completed)
+            {
+                <span>В процессе</span>
+            }
+        </td>
+         <td>
+            @if (item.TestInterview)
+            {
+                <span>Тестовое</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Подробнее", "Details", new { item.InterviewId }) |
+            @Html.ActionLink("Удалить", "Delete", new { item.InterviewId })
+        </td>
+    </tr>
+}
+
+</table>

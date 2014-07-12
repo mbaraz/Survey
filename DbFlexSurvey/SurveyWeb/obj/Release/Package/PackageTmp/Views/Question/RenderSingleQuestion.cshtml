@@ -1,0 +1,91 @@
+﻿@using SurveyModel
+@using SurveyWeb.Models
+@model SurveyWeb.Models.QuestionModel
+
+@helper WriteAnswerHiddenField(AnswerVariant answer)
+    {
+        var answerName = string.Format("Answer_{0}", answer.AnswerCode);
+    <input type="hidden" name="@answerName"/>
+}
+
+@{
+    ViewBag.Title = @Model.Question.SurveyProject.SurveyProjectName;
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#numeric").keypress(function (e) {
+            return e.which == 0 || e.which == 8 || e.which == 13 || (e.which > 47 && e.which < 58);
+        });
+    });  
+</script>
+
+<div class="question-text">@Html.Raw(Model.Question.QuestionText)</div>
+@Html.Partial("QuestionRemark", Model.Question)
+<br />
+
+@Html.ValidationSummary()
+
+@foreach (var answer in Model.AnswerVariants)
+{
+    int maxLength = answer.SymbolCount;
+    int size = Math.Max(maxLength - 1, 1);
+    bool isNumeric = answer.IsNumeric;
+    
+    using (Html.BeginForm("Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.Question.QuestionOrder }))
+    {
+        if (Model.AnswerVariants.Count != 1 || !answer.IsOpenAnswer)
+        {
+                    <b>@answer.AnswerCode</b>
+        }
+        if (answer.IsOpenAnswer)
+        {
+                        @Html.DisplayFor(model => answer.InstantText)
+                        
+            {
+                            @WriteAnswerHiddenField(answer)
+            }
+            if (Model.AnswerVariants.Count == 1)
+            {
+                     <i>Запишите</i> <br/>
+                          @*  <textarea required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"></textarea> *@
+                if (isNumeric)
+                {
+                    <input id="numeric" type="text" size="@size" maxlength="@maxLength" required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+                }
+                else
+                {
+                    <input type="text" size="@size" required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+                }
+            }
+            else
+            {
+                    <i>(Запишите)</i>
+                if (isNumeric)
+                {
+                    <input id="numeric" type="text" size="@size" maxlength="@maxLength" required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+                }
+                else
+                {
+                    <input type="text" size="@size" required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+                }
+                    <br/>
+            }
+                        
+                        <input type="submit" value="Далее"/>
+        }
+        else
+        {
+            {
+                         @WriteAnswerHiddenField(answer)
+            }
+                     <input type="submit" class="question-button" value="@string.Format("{0}", answer.InstantText)"/>
+        }
+            <input type="hidden" name="questionId" value="@Model.Question.SurveyQuestionId"/>
+    }
+}
+@*@if (Model.PrevQuestionOrder != null)
+{
+    @Html.ActionLink("Вернуться к предыдущему вопросу", "Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.PrevQuestionOrder}, "")
+}
+*@

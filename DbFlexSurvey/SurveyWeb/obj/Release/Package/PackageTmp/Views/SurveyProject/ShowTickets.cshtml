@@ -1,0 +1,24 @@
+﻿@model ICollection<SurveyModel.Ticket>
+
+
+<h2>Проект «@ViewBag.Title»</h2>
+@Html.ActionLink("Назад", "Details", new { ViewBag.SurveyProjectId })
+<br/> <br/>
+
+<fieldset>
+    <legend>Приглашения-ссылки</legend>
+    <table>
+        <tr><th>Ссылка</th><th>Описание</th><th>Создана</th><th>Действует до</th><th>Зарегистрировалось</th></tr>
+        @foreach(var ticket in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(ticket.TicketGuid.ToString(), "RegisterWithTicket", "Account", new {ticket.TicketGuid}, "")</td>
+                <td>@ticket.TicketDescription</td>
+                <td>@ticket.StartDate</td><td>@ticket.ExpireDate</td>
+                <td>@ticket.CreatedInvitations.Count</td>
+            </tr>
+        }
+    </table>
+</fieldset>
+
+@Html.ActionLink("Назад", "Details", new { ViewBag.SurveyProjectId })

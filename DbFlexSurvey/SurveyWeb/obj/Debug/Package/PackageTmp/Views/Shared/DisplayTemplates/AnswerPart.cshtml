@@ -1,0 +1,11 @@
+﻿@model SurveyModel.InterviewAnswer.AnswerPart
+@Html.DisplayFor(model => model.Answer.AnswerText)
+@if (!String.IsNullOrWhiteSpace(Model.Open) && !String.IsNullOrWhiteSpace(Model.Answer.AnswerText))
+{
+    <span>:</span>
+}
+    @Html.DisplayFor(model => model.Open)
+@if (Model.Answer.SurveyQuestion.IsRankQuestion)
+{
+    <span> = @Model.Rank </span>
+}

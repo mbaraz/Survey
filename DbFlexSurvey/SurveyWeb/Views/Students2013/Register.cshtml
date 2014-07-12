@@ -1,0 +1,64 @@
+﻿@model SurveyWeb.Models.StudentRegisterModel
+@{
+    ViewBag.Title = "Регистрация";
+
+    List<SelectListItem> list = new List<SelectListItem>();
+    for (int i = 1; i < 6; i++)
+    {
+        list.Add(new SelectListItem() { Text = i.ToString() });
+    }
+}
+
+<h2>Регистрация на сайте</h2>
+<p>
+    Все поля являются обязательными.
+</p>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@*
+<script>
+$.get("/Product/List/?sortOrder=" + выбранное_вЛисте, function (response) {
+            $("#ID_контейнера куда подгрузить(например ИД дива)").html(response);
+        });
+</script>
+*@
+@Html.ValidationSummary(true, "Не все поля заполнены:")
+
+@using (Html.BeginForm())
+{
+    <div>
+        <fieldset>
+            <legend>Регистрационные данные</legend>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Facility)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m => m.Facility, (SelectList)ViewData["Facilities"], " ")
+                @Html.ValidationMessageFor(m => m.Facility)
+            </div>
+            
+            <div class="editor-label">
+                @Html.LabelFor(m => m.ProgramType)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m => m.ProgramType, (SelectList)ViewData["ProgramTypes"], " ")
+                @Html.ValidationMessageFor(m => m.ProgramType)
+            </div>
+            
+            <div class="editor-label">
+                @Html.LabelFor(m => m.YearNum)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m => m.YearNum, list, " ")
+                @Html.ValidationMessageFor(m => m.YearNum)
+            </div>
+            <p>
+                <input type="submit" value="Продолжить" />
+            </p>
+        </fieldset>
+    </div>
+}
+@*
+<p>Опрос закончен</p>
+*@

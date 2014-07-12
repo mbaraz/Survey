@@ -1,0 +1,73 @@
+﻿@model SurveyModel.Respondent
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Respondent</legend>
+
+    <div class="display-label">RespondentFirstName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentFirstName)
+    </div>
+
+    <div class="display-label">RespondentFatherName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentFatherName)
+    </div>
+
+    <div class="display-label">RespondentSurName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentSurName)
+    </div>
+
+    <div class="display-label">RespondentEmail</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentEmail)
+    </div>
+
+    <div class="display-label">RespondentPhone</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentPhone)
+    </div>
+
+    <div class="display-label">Token</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Token)
+    </div>
+
+    <div class="display-label">RespondentDisplayName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentDisplayName)
+    </div>
+
+    <div class="display-label">RespondentFullName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentFullName)
+    </div>
+
+    <div class="display-label">BirthYear</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BirthYear)
+    </div>
+
+    <div class="display-label">IsMale</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsMale)
+    </div>
+
+    <div class="display-label">MembershipUserName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MembershipUserName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

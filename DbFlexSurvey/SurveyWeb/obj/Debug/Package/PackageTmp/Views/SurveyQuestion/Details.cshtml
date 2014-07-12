@@ -1,0 +1,104 @@
+﻿@using SurveyModel
+@model SurveyQuestion
+
+<fieldset>
+    <legend>@Html.DisplayFor(model => model.QuestionName). @Html.DisplayFor(model => model.QuestionText)</legend>
+    
+    <div class="display-label">Проект</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SurveyProject)
+    </div>
+
+            @if (Model.MultipleAnswerAllowed)
+            {
+                <div>Множественный</div>
+            }
+            
+           
+ @if (Model.BoundTag != null)
+     {
+         <div class="display-label">Переменная</div>
+    <div class="display-field">
+        @Html.DisplayFor(modelItem => modelItem.BoundTag.TagName)
+    </div>
+     }
+     
+    
+        
+     @if (Model.ConditionOnTag != null)
+     {
+         <div class="display-label">Условие</div>
+         <div class="display-field">
+             @Html.Raw(Model.ConditionOnTag.TagName + " = " + Html.DisplayFor(modelItem => modelItem.ConditionOnTagValue))
+         </div>
+         
+     }
+    
+</fieldset>
+
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { Model.SurveyQuestionId }) | @Html.ActionLink("Удалить", "Delete", new { Model.SurveyQuestionId })
+</p>
+
+<fieldset>
+    <legend>Варианты ответов</legend>
+    <table>
+        <tr>
+            <th>
+                Код
+            </th>
+            <th>
+                Ответ
+            </th>
+            <th>
+                Открытый?
+            </th>
+
+            @if (Model.BoundTag != null)
+            {
+                <th>
+                    Значение переменной
+                </th>
+            }
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.OrderedAnswerVariants) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnswerCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnswerText)
+                </td>
+                <td>
+                    @if (item.IsOpenAnswer)
+                    {
+                        <span>Открытый</span>
+                    }
+                </td>
+
+                @if (Model.BoundTag != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TagValue)
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", "SurveyAnswerVariant", new { item.AnswerVariantId }, "") |
+                    @Html.ActionLink("Удалить", "Delete", "SurveyAnswerVariant", new { item.AnswerVariantId }, "")
+                </td>
+            </tr>
+        }
+
+    </table>
+    <hr/>
+    @using (Html.BeginForm("Create", "SurveyAnswerVariant"))
+    {
+        <label>Добавить вариант ответа:</label>
+        <input type="text" name="text" />
+         <input type="checkbox" name="isMultiple" id="isMultiple"/><label for="isOpen">Открытый?</label>
+        @Html.HiddenFor(model => model.SurveyQuestionId)
+        <input type="submit" value="Добавить"/>
+    }
+</fieldset>

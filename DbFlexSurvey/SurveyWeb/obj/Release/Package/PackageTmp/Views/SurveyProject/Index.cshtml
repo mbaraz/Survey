@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SurveyModel.SurveyProject>
+
+@{
+    ViewBag.Title = ViewBag.ActiveOnly ?  "Проекты" : "Архив проектов";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Проект
+        </th>
+        <th>
+            Описание
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+                 @Html.ActionLink(item.SurveyProjectName, "Details", new { item.SurveyProjectId })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectUserDescription)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,64 @@
+﻿@using SurveyModel
+@model SurveyWeb.Models.QuestionModel
+
+@helper WriteAnswerHiddenField(AnswerVariant answer)
+{
+    var answerName = string.Format("Answer_{0}", answer.AnswerCode);
+    <input type="hidden" name="@answerName"/>
+}
+
+@{
+    ViewBag.Title = @Model.Question.QuestionText;
+}
+
+
+<div class="question-text">@Html.Raw(Model.Question.QuestionText)</div>
+@Html.Partial("QuestionRemark", Model.Question)
+<br />
+
+@Html.ValidationSummary()
+
+@foreach (var answer in Model.AnswerVariants)
+        {
+            using (Html.BeginForm("Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.Question.QuestionOrder }))
+            {
+                if (Model.AnswerVariants.Count != 1 || !answer.IsOpenAnswer)
+                {
+                    <b>@answer.AnswerCode</b>
+                }
+                if (answer.IsOpenAnswer)
+                    {
+                        @Html.DisplayFor(model=> answer.AnswerText)
+                        
+                        {
+                            @WriteAnswerHiddenField(answer)
+                        } 
+                        if (Model.AnswerVariants.Count == 1)
+                        {
+                            <i>Запишите</i> <br/>
+                          @*  <textarea required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"></textarea> *@
+                            <input type="text" required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/> 
+                        }
+                        else
+                        {
+                            <i>(Запишите)</i>
+                            <input type="text" required class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+                        }
+                        
+                        <input type="submit" value="Далее"/>
+                    }
+                else
+                {
+                    {
+                         @WriteAnswerHiddenField(answer)
+                    }
+                     <input type="submit" value="@string.Format("{0}", answer.AnswerText)"/>
+                }
+            <input type="hidden" name="questionId" value="@Model.Question.SurveyQuestionId"/>
+             }
+        }
+@*@if (Model.PrevQuestionOrder != null)
+{
+    @Html.ActionLink("Вернуться к предыдущему вопросу", "Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.PrevQuestionOrder}, "")
+}
+*@

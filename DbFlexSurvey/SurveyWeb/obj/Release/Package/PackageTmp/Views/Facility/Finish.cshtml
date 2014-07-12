@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Спасибо!";
+}
+@helper EmailTextBox(string email, string title) {
+    <a href="mailto:@email?Subject=Опрос">@title</a>    
+}
+
+<h2>Благодарим Вас за проявленное терпение!</h2>
+<p>Списки специализаций и читаемых на факультете курсов загружены.</p>
+<p>С вопросами и предложениями обращайтесь на @EmailTextBox("opros.spbu@spbu.ru", "opros.spbu@spbu.ru").</p>

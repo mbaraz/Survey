@@ -1,0 +1,105 @@
+﻿@model SurveyDomain.Univer.Results.ResultsBase
+@{
+    ViewBag.Title = "Обнаружены следующие ошибки";
+}
+@{
+    var item = Model.ErrorRows.First();
+    string instruction = "<font color='red'>красным</font>";
+    int[] columnWidth;
+    int textColumnes;
+    int longNumeric;
+    if (ViewBag.IsCourseStage)
+    {
+        instruction += ";</li><li>проверьте коды специализаций в столбце \"<i>" + item.DefaultColumnNames[6] + "</i>\". " +
+                      "Неправильные коды были заменены на \"<i>??????</i>\"";
+        columnWidth = new int[] {20, 20, 2, 5, 8, 42, 3};
+        textColumnes = 25;
+        longNumeric = 3;
+
+    }
+    else
+    {
+        columnWidth = new int[] {10, 80, 10};
+        textColumnes = 75;
+        longNumeric = 6;
+    }
+}
+<script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form').validate();
+        $("#btn").click();
+    });
+    $(function () {
+        $(".question-numeric").keypress(function (e) {
+            return e.which == 0 || e.which == 8 || e.which == 13 || (e.which > 47 && e.which < 58);
+        });
+    });
+</script>
+
+<h3>В списке обнаружены ошибки. Некорректные данные были удалены.</h3>
+<p>Вы можете либо <i>внести исправления в Excel файл и <a href="/Facility?guid=@ViewBag.Guid">загрузить</a> его снова,</i> либо <i>исправить ошибки, используя эту страницу</i>.</p>
+Пожалуйста, <ul><li>заполните поля, отмеченные @Html.Raw(instruction).</li></ul>
+<p>По завершению, нажмите кнопку "<b>Сохранить</b>" внизу страницы.</p>
+
+@using (Html.BeginForm("CoursesCorrected", "Facility"))
+{
+    <table class="vedomost">
+        @{
+            <tr>
+                @for (int i = 0; i < columnWidth.Length; i++){
+                    <th width="@columnWidth[i]%">@item.DefaultColumnNames[i + 1]</th>
+                }
+            </tr>    
+        }
+        @for (int rowNumber = 0; rowNumber < Model.ErrorRows.Count; rowNumber++)
+        {
+            item = Model.ErrorRows.ElementAt(rowNumber);
+            var row = item.ExcelRow;
+            <tr>
+                @for (int i = 0; i < row.Count; i++)
+                {
+                    int size;
+                    int cnt = 10 * rowNumber + i;
+                    if (item.IsNumericCell(i))
+                    {
+                        int maxLength;
+                        if (item.IsOneDigitCell(i)) {
+                            maxLength = 1;
+                        } else {
+                            maxLength = longNumeric;
+                        }
+                        size = Math.Max(maxLength - 1, 1);
+                        <td><input type="text" required="required" size="@size" maxlength="@maxLength" class="question-numeric"
+                                   name="@string.Format(ViewBag.ItemName + "{0}", cnt)" value="@row[i]"
+                                   min="@item.getMinMax(i)[0]" max="@item.getMinMax(i)[1]" /></td>
+                    }
+                    else if (item.IsLongText(i))
+                    {
+                        <td><textarea class="editor-field" rows="2" cols="@textColumnes" required="required" 
+                                      name="@string.Format(ViewBag.ItemName + "{0}", cnt)">@row[i]</textarea></td>
+                    }
+                    else if (!item.CanBeEmptyCell(i))
+                    {
+                        size = item.IsLongInput(i) ? 114 : 12;
+                        <td><input type="text" class="question-input" size="@size" required="required"
+                                   name="@string.Format(ViewBag.ItemName + "{0}", cnt)"
+                                   value="@row[i]" /></td>  
+                    }
+                    else
+                    {
+                        size = 43;
+                        <td><input type="text" class="question-input" size="@size" value="@row[i]"
+                                   name="@string.Format(ViewBag.ItemName + "{0}", cnt)" /></td>    
+                    }
+                }
+            </tr>
+        }
+    </table>
+
+    <p>
+        <input id="btn" type="submit" value="Сохранить"/>
+    </p>
+}

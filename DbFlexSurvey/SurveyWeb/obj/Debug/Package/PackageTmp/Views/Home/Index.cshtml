@@ -1,0 +1,35 @@
+﻿@model SurveyWeb.Models.HomeModel
+@{
+    ViewBag.Title = "Старт";
+}
+
+<h2></h2>
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+    @if (!Model.SurveyInvitatons.Any() && !Model.ActiveSurveys.Any())
+    {
+        <p>В настоящее время никаких опросов не проводится. Мы уведомим Вас, когда они появятся.</p>
+    }
+     @if (Model.ActiveSurveys.Any())
+     {
+         <p>У вас есть не законченные опросы:</p>
+         <ul>
+             @foreach (var surveyProjectId in Model.ActiveSurveys.Keys)
+             {
+                 <li>«@Html.ActionLink(Model.ActiveSurveys[surveyProjectId], "Index", "Survey", new { surveyProjectId }, null)»</li>
+             }
+         </ul>
+     }
+     @if (Model.SurveyInvitatons.Any())
+     {
+         <p>Приглашаем вас поучаствовать в следующих опросах:</p>
+         <ul>
+             @foreach (var surveyProjectId in Model.SurveyInvitatons.Keys)
+             {
+                 <li>«@Html.ActionLink(Model.SurveyInvitatons[surveyProjectId], "Index", "Survey", new { surveyProjectId }, null)»</li>
+             }
+         </ul>
+     }

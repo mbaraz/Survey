@@ -1,0 +1,30 @@
+﻿@model SurveyModel.AnswerVariant
+
+@{
+    ViewBag.Title = "Удаление варианта ответа";
+}
+
+<h2>Delete</h2>
+
+<h3>Действительно удалить вариант ответа?</h3>
+<fieldset>
+    <legend>AnswerVariant</legend>
+
+    <div class="display-label">SurveyQuestionId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SurveyQuestion)
+    </div>
+
+    <div class="display-label">AnswerText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnswerText)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        @Html.HiddenFor(model=>model.SurveyQuestionId)
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("Bе", "Index")
+    </p>
+}

@@ -1,0 +1,58 @@
+﻿@using System.Globalization
+@model SurveyWeb.Models.QuestionModel
+
+@{
+    ViewBag.Title = @Model.Question.QuestionText;
+}
+
+
+<div class="question-text">@Html.Raw(Model.Question.QuestionText)</div>
+
+
+@Html.Partial("QuestionRemark", Model.Question)
+@Html.ValidationMessage("0")
+<br/>
+    
+@using (Html.BeginForm("Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.Question.QuestionOrder }))
+{
+    foreach (var answer in Model.AnswerVariants)
+    {
+
+        var checkBoxName = string.Format("Answer_{0}", answer.AnswerCode);
+
+
+        <b>@answer.AnswerCode</b>
+        var hideCheckboxForOpen = answer.IsOpenAnswer && answer.AnswerText.Length == 0;
+        if (!hideCheckboxForOpen && !Model.Question.IsRankQuestion)
+        {
+            <input type="checkbox" name="@checkBoxName" id="@checkBoxName"/>
+        }
+        <label for="@checkBoxName">@answer.AnswerText</label>
+        
+        if (Model.Question.IsRankQuestion)
+        {
+            for (var i = Model.Question.MaxRank; i >  0; i--)
+            {
+                <input type="radio" required name="@string.Format("Rank_{0}", answer.AnswerCode)" value="@i"/> <span>@i&nbsp;&nbsp;&nbsp;</span>
+            }
+            
+            <input type="radio" required name="@string.Format("Rank_{0}", answer.AnswerCode)" value="-1" /><span>Затрудняюсь ответить</span>
+        }
+
+        if (answer.IsOpenAnswer)
+        {
+            <i>(Запишите)</i>
+            <input type="text" class="question-input" name="@string.Format("Open_{0}", answer.AnswerCode)"/>
+        }
+                    @Html.ValidationMessage(answer.AnswerCode.ToString(CultureInfo.InvariantCulture))
+
+        <br/>
+
+    }
+            <input type="hidden" name="questionId" value="@Model.Question.SurveyQuestionId"/>
+    <input type="submit" value="Далее"/>
+}
+@*@if (Model.PrevQuestionOrder != null)
+{
+    @Html.ActionLink("Вернуться к предыдущему вопросу", "Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.PrevQuestionOrder }, "")
+}*@

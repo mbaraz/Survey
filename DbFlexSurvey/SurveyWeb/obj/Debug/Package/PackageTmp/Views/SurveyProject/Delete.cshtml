@@ -1,0 +1,30 @@
+﻿@model SurveyModel.SurveyProject
+
+<h3>Are you sure you want to delete this?</h3>
+@if (Model.Interviews.Count > 0)
+{
+    <div class="validation-summary-errors">Нельзя удалить проект с интервью</div>
+}
+<fieldset>
+    <legend>SurveyProject</legend>
+
+    <div class="display-label">SurveyProjectName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SurveyProjectName)
+    </div>
+
+    <div class="display-label">ProjectUserDescription</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectUserDescription)
+    </div>
+</fieldset>
+@if (Model.Interviews.Count == 0)
+{
+    using (Html.BeginForm())
+    {
+        <p>
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+}

@@ -1,0 +1,66 @@
+﻿@model SurveyWeb.Models.Univer.UniverInfoModel
+
+@helper PasswordListLink(string facility)
+{ @Html.ActionLink(facility, "PasswordLists", new {facility}) }
+@helper ResultLink(string facility)
+{ @Html.ActionLink(facility, "Result", new {facility}) }
+
+
+@{
+    ViewBag.Title = "Факультеты";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>@ViewBag.ErrorMsg</p>
+
+    <fieldset>
+        <legend>Результаты</legend>        
+                @ResultLink("экономический") | 
+        @ResultLink("международные отношения") |
+        @ResultLink("социологии") |
+        @ResultLink("политологии") |
+        @Html.ActionLink("По группам", "List", "Students2012")
+    </fieldset>
+
+@using (Html.BeginForm("UploadCourse", "Course", FormMethod.Post, new {enctype="multipart/form-data"})) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Загрузить курсы</legend>        
+        <input type="file" name="file" required="required"/>
+
+        <p>
+            <input type="submit" value="UploadCourse" />
+        </p>
+    </fieldset>
+}
+@using (Html.BeginForm("UploadStudents", "Course", FormMethod.Post, new {enctype="multipart/form-data"})) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Загрузить студентов</legend>        
+        <input type="file" name="file" required="required"/>
+
+        <p>
+            <input type="submit" value="UploadStudents" />
+        </p>
+    </fieldset>
+}
+@using (@Html.BeginForm("Generate", "Course"))
+{
+    <fieldset>
+        <legend>Сгенерировать</legend>
+        
+    @Html.DropDownListFor(model => model.SurveyProjectId, Model.Projects) 
+    <input type="submit"/>
+    </fieldset>
+}
+@using (@Html.BeginForm("CreatePassword", "Course"))
+{
+    <fieldset>
+        <legend>Создать пароли</legend>
+        <input type="submit" value="Создать"/>
+        @PasswordListLink("экономический") | 
+        @PasswordListLink("международные отношения") |
+        @PasswordListLink("социологии") |
+        @PasswordListLink("политологии") 
+    </fieldset>
+}

@@ -1,0 +1,81 @@
+﻿@using SurveyWeb.Common
+@model SurveyWeb.Models.RespondentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>@Model.RespondentDisplayName</legend>
+
+    <div class="display-label">ФИО</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentFullName)
+    </div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentEmail)
+    </div>
+
+    <div class="display-label">Телефон</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RespondentPhone)
+    </div>
+
+    <div class="display-label">Год рождения</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BirthYear)
+    </div>
+
+    <div class="display-label">Пол:
+          @switch (Model.IsMale)
+                    {
+                        case true:
+                            <span>Мужской</span>
+                            break;
+                        case false:
+                            <span>Женский</span>
+                            break;
+                            default:
+                            <span>??</span>
+                            break;
+                    }
+    </div>
+    @if (Model.MembershipUserName != null)
+    {
+        <div class="display-label">Логин</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.MembershipUserName)
+        </div>
+
+        @Html.Partial("RolesList", Model.RespondentRoles)
+
+
+        if (Model.IsCurrentUserAdmin)
+         {
+             using (Html.BeginForm("Grant", "Respondent"))
+             {
+                 @Html.DropDownList("Role", Model.PossibleRoles.Select(role => new SelectListItem {Value = role, Text = RoleUtil.GetDesciption(role)}))
+                 @Html.HiddenFor(model => model.RespondentId)
+                 <input type="submit" value="Добавить роль"/>
+             }
+         }
+    }
+    
+    @if (!Model.Registered)
+    {
+        using (Html.BeginForm("SentInvite", "Respondent"))
+        {
+            @Html.HiddenFor(model => model.RespondentId)
+            <input type="submit" value="Отправить приглашение"/>
+        }
+
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { Model.RespondentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

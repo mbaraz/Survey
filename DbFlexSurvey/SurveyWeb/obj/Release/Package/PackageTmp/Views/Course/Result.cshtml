@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SurveyInterfaces.CourseResultInfo>
+
+@{
+    ViewBag.Title = ViewBag.Facility;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ActionLink("Комментарии по факультету", "ExportFacilityComments", new { facility = ViewBag.Facility })
+&#160;&#160;
+@Html.ActionLink("Скачать все", "ExportAll", new { facility = ViewBag.Facility })
+<table>
+    <tr>
+        <th>
+            Название курса
+        </th>
+        
+        <th>
+            Анкет
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseDispName)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerCount)
+        </td>
+
+        <td>
+            @Html.ActionLink("Скачать", "Export", new { id=item.Course.CourseId })
+            @Html.ActionLink("Комментарии", "ExportComments", new { id=item.Course.CourseId })
+        </td>
+    </tr>
+}
+
+</table>

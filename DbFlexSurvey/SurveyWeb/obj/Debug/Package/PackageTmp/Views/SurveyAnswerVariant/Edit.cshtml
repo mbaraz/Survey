@@ -1,0 +1,61 @@
+﻿@model SurveyModel.AnswerVariant
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>AnswerVariant</legend>
+
+        @Html.HiddenFor(model => model.AnswerVariantId)
+        @Html.HiddenFor(model => model.SurveyQuestionId)
+        @Html.HiddenFor(model => model.AnswerOrder)
+
+        <div class="editor-label">
+           Текст ответа
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AnswerText)
+            @Html.ValidationMessageFor(model => model.AnswerText)
+        </div>
+
+        <div class="editor-label">
+            Открытый?
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsOpenAnswer)
+            @Html.ValidationMessageFor(model => model.IsOpenAnswer)
+        </div>
+
+        <div class="editor-label">
+            Код ответа
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AnswerCode)
+            @Html.ValidationMessageFor(model => model.AnswerCode)
+        </div>
+
+        <div class="editor-label">
+            Значение переменной
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TagValue)
+            @Html.ValidationMessageFor(model => model.TagValue)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Назад к вопросу", "DetailsById", "SurveyQuestion", new { Model.SurveyQuestionId }, "")
+</div>

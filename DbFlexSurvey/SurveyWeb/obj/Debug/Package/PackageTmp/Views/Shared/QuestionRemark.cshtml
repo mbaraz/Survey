@@ -1,0 +1,38 @@
+﻿@model SurveyModel.SurveyQuestion
+
+@* TODO Fix styling *@
+@if (!Model.MultipleAnswerAllowed)
+{
+    if (Model.AnswerVariants.Count > 1)
+    {
+        <div class="question-remark">можно выбрать один вариант ответа</div>
+    }
+}
+else if (Model.IsRankQuestion)
+{
+    <div class="question-remark">где <b><u>@Model.MaxRank</u></b> - самая высокая оценка, 1 — самая низкая оценка</div>
+}
+else
+if (Model.MaxAnswers == null && Model.MinAnswers == null)
+{
+    <div class="question-remark">можно выбрать несколько вариантов ответов</div>
+}
+else if (Model.MaxAnswers != null && Model.MinAnswers == null) 
+{
+    <div class="question-remark">можно выбрать не более <b><u>@Model.MaxAnswers</u></b> вариантов ответов</div>
+}
+else if (Model.MinAnswers != null && Model.MaxAnswers == null)
+{
+     <div class="question-remark">можно выбрать не менее <b><u>@Model.MinAnswers</u></b> вариантов ответов</div>
+}
+else
+{
+    if (Model.MaxAnswers == Model.MinAnswers)
+    {
+        <div class="question-remark">нужно выбрать <b><u>@Model.MinAnswers</u></b> варианта(ов) ответа(ов): </div>
+    }
+    else
+    {
+        <div class="question-remark">можно выбрать от <b><u>@Model.MinAnswers до @Model.MaxAnswers</u></b> вариантов ответов</div>
+    }
+}

@@ -1,0 +1,6 @@
+﻿@model SurveyModel.Tag
+
+@if (Model!=null)
+{
+    @Html.ActionLink(Model.TagName, "Details", "Tag", new {Model.TagId}, "")
+}

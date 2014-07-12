@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "Ошибки при отправке приглашений";
+}
+
+<h2>Ошибки при отправке приглашений</h2>
+<fieldset>
+    <legend>Следующие почтовые ящики не доступны</legend>
+        @foreach(var email in Model) {
+                <p>@email</p>
+        }
+
+</fieldset>
+ @Html.ActionLink("Вернуться на страницу проекта", "Details", new { surveyProjectId = ViewBag.ProjectId } )

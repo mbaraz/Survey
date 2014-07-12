@@ -1,0 +1,78 @@
+﻿@model SurveyModel.SurveyQuestion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление вопроса</h2>
+
+<h3>С удалением вопроса будут удалены все ответы на него. Действительно удалить вопрос?</h3>
+<fieldset>
+    <legend>SurveyQuestion</legend>
+
+    <div class="display-label">Проект</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SurveyProject)
+    </div>
+
+    <div class="display-label">QuestionName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuestionName)
+    </div>
+
+    <div class="display-label">QuestionText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuestionText)
+    </div>
+
+    <div class="display-label">MultipleAnswerAllowed</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MultipleAnswerAllowed)
+    </div>
+
+    <div class="display-label">MaxAnswers</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxAnswers)
+    </div>
+    
+    <div class="display-label">MinAnswers</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinAnswers)
+    </div>
+
+    <div class="display-label">QuestionOrder</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuestionOrder)
+    </div>
+
+    <div class="display-label">BoundTagId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BoundTag)
+    </div>
+
+    <div class="display-label">ConditionOnTagId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConditionOnTag)
+    </div>
+
+    <div class="display-label">ConditionOnTagValue</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConditionOnTagValue)
+    </div>
+
+    <div class="display-label">MaxRank</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxRank)
+    </div>
+
+    <div class="display-label">IsRankQuestion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsRankQuestion)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

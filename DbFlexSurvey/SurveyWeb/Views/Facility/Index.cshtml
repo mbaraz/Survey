@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Загрузка файлов";
+    ViewBag.Top = ViewBag.FacilityName + ": " + ViewBag.Title;
+}
+
+<script type="text/javascript" language="javascript">
+/*    $(function () {
+        $('#specs').show();
+        $('#courses').hide();
+        
+    });
+*/   
+    function checkfile(sender, upldButton) {
+        var validExts = new Array(".xls", ".xlsx", ".csv");
+        var fileExt = sender.value;
+        fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+
+        if (validExts.indexOf(fileExt) < 0) {
+            alert("Неправильный формат файла!\n Допустимые форматы: " + validExts.toString() + ".");
+            upldButton.disabled = true;
+            return false;
+        } else {
+            upldButton.disabled = false;
+            return true;
+        }
+    }
+</script>
+
+<h2>@ViewBag.Top</h2>
+<p class="error">@Html.Raw(ViewBag.ErrorMsg)</p>
+
+
+@using (Html.BeginForm("CourseUploaded", "Facility", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>  @*id="specs"*@
+        <legend>Выбрать список @ViewBag.Legend</legend>        
+        <input type="file" name="uploadingFile" required="required" size="60" onchange="checkfile(this, uploadSpecs);"
+               accept="application/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+@*
+        <input type="hidden" name="facilityName" value="@Model.Name"/>
+        <input type="hidden" name="fileType" value="@Model.Stage"/>*@
+        <p>
+            <input type="submit" id="uploadSpecs" value="Загрузить список @ViewBag.Legend в формате Excel" disabled="disabled" />
+        </p>
+    </fieldset>
+}
+@*
+@using (Html.BeginForm("CourseUploaded", "Facility", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset id="courses">
+        <legend>Загрузить список курсов</legend>        
+        <input type="file" name="uploadingFile" required="required" size="60" onchange="checkfile(this, uploadCourse);"
+        accept="application/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+$1$        
+        <input type="hidden" name="facilityName" value="@ViewBag.FacilityName"/>
+        <input type="hidden" name="fileType" value="@ViewBag.CourseType"/>#1#
+        <p>
+            <input type="submit" id="uploadCourse" value="Загрузить список курсов в формате Excel" disabled="disabled" />
+        </p>
+    </fieldset>
+}
+*@

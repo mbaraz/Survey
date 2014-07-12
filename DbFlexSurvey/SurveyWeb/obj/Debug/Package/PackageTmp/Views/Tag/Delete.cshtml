@@ -1,0 +1,49 @@
+﻿@model SurveyWeb.Models.TagViewModel
+
+@{
+    ViewBag.Title = string.Format("Удаление переменной «{0}»", Model.Tag.TagName);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Действительно удалить?</h3>
+<fieldset>
+    <legend>@Model.Tag.TagName</legend>
+    
+    <div class="display-label">Проект</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tag.SurveyProject)
+    </div>
+    
+    @if (Model.BoundQuestions.Any())
+    {
+        <div class="display-label">Переменная устанавливается по результатам следующих вопросов (они будут отвязаны после удаления):</div>
+        <div class="display-field">
+            <ul>
+                @foreach (var question in Model.BoundQuestions)
+                {
+                    <li>@Html.DisplayFor(model => question)</li>
+                }
+            </ul>
+        </div>
+    }
+    @if (Model.ConditionalQuestions.Any())
+    {
+        <div class="display-label">Вопросы, которые задаются под условием данной переменной (они будут задаваться всегда):</div>
+        <div class="display-field">
+            <ul>
+                @foreach (var question in Model.ConditionalQuestions)
+                {
+                    <li>@Html.DisplayFor(model => question)</li>
+                }
+            </ul>
+        </div>
+    }
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

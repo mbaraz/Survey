@@ -1,0 +1,38 @@
+﻿@model SurveyWeb.Models.StudentRegisterModel
+           
+@helper ResultLink(string str)
+{ @Html.ActionLink(str, "Register") }
+
+@helper EmailTextBox(string email, string title) {
+    <a href="mailto:@email?Subject=Опрос">@title</a>    
+}
+
+@{
+    ViewBag.Title = "RegisterError";
+}
+
+
+    @if (ViewBag.IsRepeatedEmail != null && ViewBag.IsRepeatedEmail)
+    {
+        <h2>Недопустимый электронный адрес</h2>
+        <div>
+            <fieldset>
+                <legend>Пользователь с этим email уже есть:</legend>
+                <p class="error">@string.Format("Пользователь с адресом <b>{0}</b> уже зарегистрирован на сайте.", Model.Email)</p>
+                <p class="error">Введите, пожалуйста, адрес другого Вашего почтового ящика или обратитесь в службу поддержки @EmailTextBox("opros.spbu@spbu.ru", "opros.spbu@spbu.ru")</p>
+            </fieldset>
+        </div>
+    }
+    else
+    {
+        <h2>Неправильный ввод</h2>
+        <div>
+            <fieldset>
+                <legend>Ошибка в указанных данных:</legend>
+                <p class="error">@string.Format("{2}-го курса для {0}, {1} не существует.", Model.Facility.ToLower(), Model.ProgramType.ToLower(), Model.YearNum)</p>
+            </fieldset>
+        </div>
+
+    }
+
+    @ResultLink("Назад")

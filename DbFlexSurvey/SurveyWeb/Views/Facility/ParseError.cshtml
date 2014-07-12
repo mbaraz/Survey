@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Обнаружены следующие ошибки";
+    ViewBag.Top = ViewBag.FacilityName != string.Empty ? ViewBag.FacilityName + ": " + ViewBag.Title : "Недопустимое действие!";
+}
+
+<h2>@ViewBag.Top</h2>
+<p class="error">@Html.Raw(ViewBag.ErrorMsg)</p>
+<p>@ViewBag.DirectionMsg</p>

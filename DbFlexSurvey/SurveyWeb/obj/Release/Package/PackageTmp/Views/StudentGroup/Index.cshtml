@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SurveyModel.Univer.StudentGroup>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            GroupType
+        </th>
+        <th>
+            GroupProgram
+        </th>
+        <th>
+            GroupNum
+        </th>
+        <th>
+            Курс
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupProgram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupCourse) курс
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentGroupId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentGroupId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentGroupId })
+        </td>
+    </tr>
+}
+
+</table>

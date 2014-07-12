@@ -1,0 +1,20 @@
+﻿@model SurveyWeb.Models.CreateTicketModel
+
+@using (Html.BeginForm("CreateTicket", "SurveyProject"))
+{
+    
+    <div class="quick-add-field">
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.SurveyProjectId) 
+
+        
+    @Html.LabelFor(model => model.Description)<span>: </span>
+
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        
+
+            <input type="submit" value="Добавить ссылку" />
+            </div>
+}
