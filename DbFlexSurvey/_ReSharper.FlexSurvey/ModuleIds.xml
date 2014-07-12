@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="ABDC89D6-9A3B-4484-B6C1-A02A0C5BF1F5" ModuleId="SurveyWeb" />
+  <Module PersistentId="B5A798AD-B571-40F6-9984-16A3034F5515" ModuleId="SurveyInterfaces" />
+  <Module PersistentId="13AA22CF-AB82-4BA6-B641-1F5AD3305922" ModuleId="SurveyModel" />
+  <Module PersistentId="2B496E03-02F5-4E3D-BF2E-EB185A92CD73" ModuleId="SurveyDomain" />
+  <Module PersistentId="CCE9C014-67EE-4800-89A1-67F997A2D5FF" ModuleId="SurveyCommon" />
+</Modules>

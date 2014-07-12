@@ -1,0 +1,15 @@
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyDomain.dll
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyDomain.pdb
+c:\Projects\Survey\SurveyDomain\bin\Debug\Microsoft.Practices.Unity.dll
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyCommon.dll
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyInterfaces.dll
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyModel.dll
+c:\Projects\Survey\SurveyDomain\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyCommon.pdb
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyInterfaces.pdb
+c:\Projects\Survey\SurveyDomain\bin\Debug\SurveyModel.pdb
+c:\Projects\Survey\SurveyDomain\bin\Debug\Microsoft.Practices.Unity.pdb
+c:\Projects\Survey\SurveyDomain\bin\Debug\Microsoft.Practices.Unity.xml
+c:\Projects\Survey\SurveyDomain\obj\Debug\ResolveAssemblyReference.cache
+c:\Projects\Survey\SurveyDomain\obj\Debug\SurveyDomain.dll
+c:\Projects\Survey\SurveyDomain\obj\Debug\SurveyDomain.pdb

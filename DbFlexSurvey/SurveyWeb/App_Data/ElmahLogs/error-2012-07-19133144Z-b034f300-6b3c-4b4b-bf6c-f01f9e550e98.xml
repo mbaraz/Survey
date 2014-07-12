@@ -1,0 +1,170 @@
+﻿<error errorId="b034f300-6b3c-4b4b-bf6c-f01f9e550e98" application="/" host="LTSAREV" type="System.ArgumentException" message="Словарь параметров содержит запись со значением NULL для параметра &quot;interviewId&quot; типа &quot;System.Int32&quot;, не допускающего значение NULL, для метода &quot;System.Web.Mvc.ActionResult Details(Int32)&quot; в &quot;SurveyWeb.Controllers.InterviewController&quot;. Необязательный параметр должен иметь ссылочный тип, тип, допускающий значение NULL, либо он должен быть объявлен как необязательный параметр.&#xD;&#xA;Parameter name: parameters" source="System.Web.Mvc" detail="System.ArgumentException: Словарь параметров содержит запись со значением NULL для параметра &quot;interviewId&quot; типа &quot;System.Int32&quot;, не допускающего значение NULL, для метода &quot;System.Web.Mvc.ActionResult Details(Int32)&quot; в &quot;SurveyWeb.Controllers.InterviewController&quot;. Необязательный параметр должен иметь ссылочный тип, тип, допускающий значение NULL, либо он должен быть объявлен как необязательный параметр.&#xD;&#xA;Parameter name: parameters&#xD;&#xA;   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.&lt;&gt;c__DisplayClass1.&lt;Execute&gt;b__0(ParameterInfo parameterInfo)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)&#xD;&#xA;   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;InvokeActionMethodWithFilters&gt;b__12()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;&gt;c__DisplayClass17.&lt;InvokeActionMethodWithFilters&gt;b__14()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="tsarev" time="2012-07-19T13:31:44.6308865Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-us,ru;q=0.7,en;q=0.3&#xD;&#xA;HTTP_COOKIE:Orchrd-=%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D; .ASPXAUTH=F9409E048EF6C325221AC616EC7F21415BFA8B94DE5C26EA5180ECC0D296523574FA48C58AEA85D6831609B7D70D73EE28E5A9371D85F306F33414032EA4C3AA5571032808016E78BA3C19704F46CA66AB20D3AF1AB4227073CA3601E379D1F625A57C76042ACC785634AC662FB4946E3757E58EC84995B97854B3184547788F&#xD;&#xA;HTTP_HOST:localhost:50020&#xD;&#xA;HTTP_REFERER:http://localhost:50020/Interview?SurveyProjectId=2&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: en-us,ru;q=0.7,en;q=0.3&#xD;&#xA;Cookie: Orchrd-=%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D; .ASPXAUTH=F9409E048EF6C325221AC616EC7F21415BFA8B94DE5C26EA5180ECC0D296523574FA48C58AEA85D6831609B7D70D73EE28E5A9371D85F306F33414032EA4C3AA5571032808016E78BA3C19704F46CA66AB20D3AF1AB4227073CA3601E379D1F625A57C76042ACC785634AC662FB4946E3757E58EC84995B97854B3184547788F&#xD;&#xA;Host: localhost:50020&#xD;&#xA;Referer: http://localhost:50020/Interview?SurveyProjectId=2&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="c:\Projects\Survey\SurveyWeb\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Forms" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="tsarev" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="LTSAREV\Леонид" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="tsarev" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Interview/Details" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="c:\Projects\Survey\SurveyWeb\Interview\Details" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="Length=13" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Interview/Details" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="50020" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/Interview/Details" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-us,ru;q=0.7,en;q=0.3" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="Orchrd-=%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D; .ASPXAUTH=F9409E048EF6C325221AC616EC7F21415BFA8B94DE5C26EA5180ECC0D296523574FA48C58AEA85D6831609B7D70D73EE28E5A9371D85F306F33414032EA4C3AA5571032808016E78BA3C19704F46CA66AB20D3AF1AB4227073CA3601E379D1F625A57C76042ACC785634AC662FB4946E3757E58EC84995B97854B3184547788F" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:50020" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:50020/Interview?SurveyProjectId=2" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="Length">
+      <value string="13" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="Orchrd-">
+      <value string="%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D" />
+    </item>
+    <item name=".ASPXAUTH">
+      <value string="F9409E048EF6C325221AC616EC7F21415BFA8B94DE5C26EA5180ECC0D296523574FA48C58AEA85D6831609B7D70D73EE28E5A9371D85F306F33414032EA4C3AA5571032808016E78BA3C19704F46CA66AB20D3AF1AB4227073CA3601E379D1F625A57C76042ACC785634AC662FB4946E3757E58EC84995B97854B3184547788F" />
+    </item>
+  </cookies>
+</error>

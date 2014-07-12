@@ -1,0 +1,11 @@
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\SurveyInterfaces.dll
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\SurveyInterfaces.pdb
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\SurveyModel.dll
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\SurveyCommon.dll
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\EntityFramework.dll
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\SurveyModel.pdb
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\SurveyCommon.pdb
+c:\Projects\Survey\SurveyInterfaces\bin\Debug\EntityFramework.xml
+c:\Projects\Survey\SurveyInterfaces\obj\Debug\ResolveAssemblyReference.cache
+c:\Projects\Survey\SurveyInterfaces\obj\Debug\SurveyInterfaces.dll
+c:\Projects\Survey\SurveyInterfaces\obj\Debug\SurveyInterfaces.pdb

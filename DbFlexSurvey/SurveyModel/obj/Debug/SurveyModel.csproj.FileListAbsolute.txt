@@ -1,0 +1,9 @@
+c:\Projects\Survey\SurveyModel\bin\Debug\SurveyModel.dll
+c:\Projects\Survey\SurveyModel\bin\Debug\SurveyModel.pdb
+c:\Projects\Survey\SurveyModel\bin\Debug\EntityFramework.dll
+c:\Projects\Survey\SurveyModel\bin\Debug\SurveyCommon.dll
+c:\Projects\Survey\SurveyModel\bin\Debug\SurveyCommon.pdb
+c:\Projects\Survey\SurveyModel\bin\Debug\EntityFramework.xml
+c:\Projects\Survey\SurveyModel\obj\Debug\ResolveAssemblyReference.cache
+c:\Projects\Survey\SurveyModel\obj\Debug\SurveyModel.dll
+c:\Projects\Survey\SurveyModel\obj\Debug\SurveyModel.pdb

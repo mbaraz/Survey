@@ -1,0 +1,173 @@
+﻿<error errorId="a0834d44-7090-45ad-a769-c3bf7615f03b" application="/" host="LTSAREV" type="System.Data.MetadataException" message="Schema specified is not valid. Errors: &#xD;&#xA;(60,6) : error 0040: Type SurveyInvitation_Ticket is not defined in namespace SurveyDomain (Alias=Self)." source="System.Data.Entity" detail="System.Data.MetadataException: Schema specified is not valid. Errors: &#xD;&#xA;(60,6) : error 0040: Type SurveyInvitation_Ticket is not defined in namespace SurveyDomain (Alias=Self).&#xD;&#xA;   at System.Data.Metadata.Edm.EdmItemCollection.LoadItems(IEnumerable`1 xmlReaders, IEnumerable`1 sourceFilePaths, SchemaDataModelOption dataModelOption, DbProviderManifest providerManifest, ItemCollection itemCollection, Boolean throwOnError)&#xD;&#xA;   at System.Data.Metadata.Edm.EdmItemCollection.Init(IEnumerable`1 xmlReaders, IEnumerable`1 filePaths, Boolean throwOnError)&#xD;&#xA;   at System.Data.Metadata.Edm.EdmItemCollection..ctor(IEnumerable`1 xmlReaders)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Edm.EdmModelExtensions.ToEdmItemCollection(EdmModel model)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Edm.Db.Mapping.DbDatabaseMappingExtensions.ToMetadataWorkspace(DbDatabaseMapping databaseMapping, Action`1 storeAction)&#xD;&#xA;   at System.Data.Entity.Internal.CodeFirstCachedMetadataWorkspace..ctor(DbDatabaseMapping databaseMapping)&#xD;&#xA;   at System.Data.Entity.Infrastructure.DbCompiledModel..ctor(DbModel model)&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.CreateModel(LazyInternalContext internalContext)&#xD;&#xA;   at System.Data.Entity.Internal.RetryLazy`2.GetValue(TInput input)&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()&#xD;&#xA;   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()&#xD;&#xA;   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()&#xD;&#xA;   at System.Linq.Queryable.Single[TSource](IQueryable`1 source, Expression`1 predicate)&#xD;&#xA;   at SurveyDomain.Repositories.SurveyProjectRepository.GetById(Int32 id) in c:\Projects\Survey\SurveyDomain\Repositories\SurveyProjectRepository.cs:line 17&#xD;&#xA;   at SurveyWeb.Controllers.SurveyProjectController.Details(Int32 surveyProjectId, Nullable`1 invitedUsers, Nullable`1 newUsers) in c:\Projects\Survey\SurveyWeb\Controllers\SurveyProjectController.cs:line 56&#xD;&#xA;   at lambda_method(Closure , ControllerBase , Object[] )&#xD;&#xA;   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;InvokeActionMethodWithFilters&gt;b__12()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;&gt;c__DisplayClass17.&lt;InvokeActionMethodWithFilters&gt;b__14()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="tsarev" time="2012-07-18T17:09:35.6461342Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-us,ru;q=0.7,en;q=0.3&#xD;&#xA;HTTP_COOKIE:Orchrd-=%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D; .ASPXAUTH=7EC2B3EFEEFF044A7C67D980098DB63C9EFEBCEA00D03D1830C81C43F4B29FD6433293871FD8A7302512A7C145B99B8055E36DFB8C61E01A22D9FFB13CD9E9B892D4960B35BE599AC079C2D61E61449CD7ABAD1F84697F298BD63A1BFD533459BAB7BDDBC84C1B9B3F1FD1EB446DDF591ED7E42F51195DD7E5517240DBEF096C&#xD;&#xA;HTTP_HOST:localhost:50020&#xD;&#xA;HTTP_REFERER:http://localhost:50020/SurveyProject/Active&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: en-us,ru;q=0.7,en;q=0.3&#xD;&#xA;Cookie: Orchrd-=%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D; .ASPXAUTH=7EC2B3EFEEFF044A7C67D980098DB63C9EFEBCEA00D03D1830C81C43F4B29FD6433293871FD8A7302512A7C145B99B8055E36DFB8C61E01A22D9FFB13CD9E9B892D4960B35BE599AC079C2D61E61449CD7ABAD1F84697F298BD63A1BFD533459BAB7BDDBC84C1B9B3F1FD1EB446DDF591ED7E42F51195DD7E5517240DBEF096C&#xD;&#xA;Host: localhost:50020&#xD;&#xA;Referer: http://localhost:50020/SurveyProject/Active&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="c:\Projects\Survey\SurveyWeb\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Forms" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="tsarev" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="LTSAREV\Леонид" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="tsarev" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/SurveyProject/Details" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="c:\Projects\Survey\SurveyWeb\SurveyProject\Details" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="SurveyProjectId=1" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/SurveyProject/Details" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="50020" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/SurveyProject/Details" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-us,ru;q=0.7,en;q=0.3" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="Orchrd-=%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D; .ASPXAUTH=7EC2B3EFEEFF044A7C67D980098DB63C9EFEBCEA00D03D1830C81C43F4B29FD6433293871FD8A7302512A7C145B99B8055E36DFB8C61E01A22D9FFB13CD9E9B892D4960B35BE599AC079C2D61E61449CD7ABAD1F84697F298BD63A1BFD533459BAB7BDDBC84C1B9B3F1FD1EB446DDF591ED7E42F51195DD7E5517240DBEF096C" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:50020" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:50020/SurveyProject/Active" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="SurveyProjectId">
+      <value string="1" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="Orchrd-">
+      <value string="%7B%22Exp-N42-Settings%22%3A%22open%22%2C%22Exp-N42-%22%3A%22open%22%7D" />
+    </item>
+    <item name=".ASPXAUTH">
+      <value string="7EC2B3EFEEFF044A7C67D980098DB63C9EFEBCEA00D03D1830C81C43F4B29FD6433293871FD8A7302512A7C145B99B8055E36DFB8C61E01A22D9FFB13CD9E9B892D4960B35BE599AC079C2D61E61449CD7ABAD1F84697F298BD63A1BFD533459BAB7BDDBC84C1B9B3F1FD1EB446DDF591ED7E42F51195DD7E5517240DBEF096C" />
+    </item>
+  </cookies>
+</error>

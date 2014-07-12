@@ -1,0 +1,5 @@
+c:\Projects\Survey\SurveyCommon\bin\Debug\SurveyCommon.dll
+c:\Projects\Survey\SurveyCommon\bin\Debug\SurveyCommon.pdb
+c:\Projects\Survey\SurveyCommon\obj\Debug\ResolveAssemblyReference.cache
+c:\Projects\Survey\SurveyCommon\obj\Debug\SurveyCommon.dll
+c:\Projects\Survey\SurveyCommon\obj\Debug\SurveyCommon.pdb
