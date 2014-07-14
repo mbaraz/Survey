@@ -155,6 +155,7 @@
     <Content Include="Content\Flash\textLayout_2.0.0.232.swf" />
     <Content Include="Content\themes\base\images\logo_color.png" />
     <Content Include="Content\themes\base\Print.css" />
+    <Content Include="Scripts\swfobject_0.js" />
     <Content Include="Scripts\swfobject.js" />
     <Content Include="Views\Respondent\Details.cshtml" />
     <Content Include="Views\Respondent\RolesList.cshtml" />
