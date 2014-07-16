@@ -42,7 +42,13 @@ namespace SurveyModel
         {
             get { return MaxRank != null && MaxRank != 0; }
         }
-// Flex: For Grid Question
+// Flex
+        public bool IsRatingOrRankingQuestion { get { return QuestionType == 2 || QuestionType == 3; } }
+
+        public bool HasSingleAnswer { get { return QuestionType == 4 || QuestionType == 5; } }
+
+        public bool IsDrageQuestion { get { return QuestionType == 6; } }
+// For Grid Question
         public bool IsGridQuestion { get { return QuestionType >= 7 || (IsRankQuestion && QuestionText.Contains(AnswerVariant.TextPartsDelimiter)); } }
 
         public string InstantText { get { return (QuestionText == null) ? QuestionText : QuestionText.Split(AnswerVariant.TextPartsDelimiter)[0]; } }
@@ -84,16 +90,19 @@ namespace SurveyModel
 
             if (interviewAnswer.Answers.Count < MinAnswersCount && QuestionName != "OptionalSelector")
                 throw new QuestionTooMinAnswersException();
-
+// Flex
+            if (HasSingleAnswer || IsGridQuestion)
+                return;
+// End Flex
             if (interviewAnswer.Answers.Count > MaxAnswersCount)
                 throw new QuestionTooManyAnswersException();
 
-// Flex: For Grid Question
-            if (IsGridQuestion)
-                return;
-// End Flex
             CheckNoUncorrectAnswers<UnknownAnswerException>(interviewAnswer.Answers.Where(a => AnswerVariants.All(av => av.AnswerCode != a)));
 
+// Flex: For Rating or Ranking Question
+            if (IsRatingOrRankingQuestion)
+                return;
+// End Flex
             CheckNoUncorrectAnswers<OpenAnswerHasNoOpenPartException>(AnswerVariants.Where(
                 av => av.IsOpenAnswer && interviewAnswer.Answers.Contains(av.AnswerCode) &&
                       !interviewAnswer.OpenAnswers.ContainsKey(av.AnswerCode)).Select(av => av.AnswerCode));
@@ -104,7 +113,7 @@ namespace SurveyModel
             if (!IsRankQuestion && interviewAnswer.Rank.Any())
                 throw new QuestionHasUnexpectedRanksException();
 
-            if (IsRankQuestion) {
+            if (IsRankQuestion && !IsDrageQuestion) {
                 CheckNoUncorrectAnswers<RankAnswerNoRankPartException>(interview.GetFilteredAnswers(this).Where(av => !interviewAnswer.Rank.ContainsKey(av.AnswerCode)));
                 CheckNoUncorrectAnswers<RankAnswerWrongException>(interviewAnswer.Rank.Where(r => r.Value > MaxRank).Select(r => r.Key));
                 CheckNoUncorrectAnswers<RankAnswerWrongException>(interviewAnswer.Rank.Where(r => r.Value < RANK_FAILED_TO_ANSWER).Select(r => r.Key));
