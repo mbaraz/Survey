@@ -8,6 +8,11 @@ namespace SurveyCommon
 {
     public static class StringStaticExtensions
     {
+        private const char Delimiter = ' ';
+        private const string NumSuffixes = ".)";
+
+        private static bool invalid;
+
         public static int? ToNullableInt(this string s)
         {
             int a;
@@ -69,7 +74,14 @@ namespace SurveyCommon
             return match.Groups[1].Value + domainName;
         }
 
-        private static bool invalid;
-        private const string NumSuffixes = ".)";
+        public static string[][] ConditionsArray(this string strIn)
+        {
+            var arr = strIn.Split(Delimiter);
+            var result = new string[arr.Length / 4][];
+            for (var i = 0; i < result.Length; i++)
+                result[i] = arr.Skip(4 * i).Take(4).ToArray();
+
+            return result;
+        }
     }
 }

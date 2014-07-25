@@ -251,7 +251,7 @@ namespace SurveyWeb.Common
 
         private SurveyQuestion SurveyQuestion
         {
-            get { 
+            get {
                 SurveyQuestion question = new SurveyQuestion {
                     SurveyProjectId = Dictionary["SurveyProjectId"].Integer,
                     SurveyQuestionId = Dictionary["SurveyQuestionId"].Integer,

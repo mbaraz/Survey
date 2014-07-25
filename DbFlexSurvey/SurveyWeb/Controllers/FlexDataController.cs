@@ -150,12 +150,13 @@ namespace SurveyWeb.Controllers
         private SurveyQuestion GetSurveyQuestion(int order, Interview interview, SurveyProject project, int startOrder)
         {
             var question = _surveyQuestionRepository.GetQuestion(project.SurveyProjectId, order);
+/*  ????????????
             if (question == null)
                 return null;
 
             if (interview.ShouldSkip(question) && interview.shouldSkipForTestFx(question, startOrder))    //  !interview.GetFilteredAnswersFx(question, startOrder).Any())
                 return null;
-
+*/
             return question;
         }
 
