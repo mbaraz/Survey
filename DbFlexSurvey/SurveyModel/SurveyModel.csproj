@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerVariant.cs" />
+    <Compile Include="Logic\LogicalExpression.cs" />
+    <Compile Include="Logic\LogicalUtil.cs" />
+    <Compile Include="Logic\TagCondition.cs" />
     <Compile Include="SubQuestion.cs" />
     <Compile Include="Univer\Course.cs" />
     <Compile Include="IInterviewAnswer.cs" />

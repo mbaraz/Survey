@@ -87,6 +87,10 @@ namespace SurveyDomain
             if (question.BoundTagId != null)
                 SaveTagValue(interview, question.BoundTag, interviewAnswer.Answers.Select(answer => question.AnswerVariants.Single(variant => variant.AnswerCode == answer)));
 
+            foreach (SubQuestion subQuestion in question.SubQuestions)
+                if (subQuestion.BoundTagId.HasValue)
+                    SaveTagValue(interview, subQuestion.BoundTag, interviewAnswer.Rank.Where(rank => rank.Key == subQuestion.SubOrder).Select(rank => question.AnswerVariants.Single(variant => (variant.AnswerCode == rank.Value))));
+            
             return true;
         }
 

@@ -142,7 +142,7 @@ namespace SurveyWeb.Controllers
             var model = new QuestionModelRestricted {
                                                     Question = new SurveyQuestionRestricted(question),  //  , interview.GetFilteredSubitemsFx(question, startOrder)),
                                                     SubQuestions = subitems.ToArray(),
-                                                    AnswerVariants = question.IsGridQuestion ? question.OrderedAnswerVariants.Select(av => new AnswerVariantRestricted(av)).ToArray() : variants.ToArray()
+                                                    AnswerVariants = variants.ToArray() //  question.IsGridQuestion ? question.OrderedAnswerVariants.Select(av => new AnswerVariantRestricted(av)).ToArray() : variants.ToArray()
                                                 };
             return Content(model.ToJSON(null));
         }
