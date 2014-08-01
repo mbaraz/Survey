@@ -8,7 +8,6 @@ namespace SurveyModel
         public int SubQuestionId { get; set; }
         public int SurveyQuestionId { get; set; }
         public virtual SurveyQuestion SurveyQuestion { get; set; }
-//        public string QuestionName { get; set; }
         public string QuestionText { get; set; }
         public int SubOrder { get; set; }
 
@@ -23,13 +22,11 @@ namespace SurveyModel
 
         public void copyFrom(SubQuestion subQuestion)
         {
-//            QuestionName = subQuestion.QuestionName;
             QuestionText = subQuestion.QuestionText;
             SubOrder = subQuestion.SubOrder;
             BoundTagId = subQuestion.BoundTagId;
             ConditionString = subQuestion.ConditionString;
         }
-
 
         public void updateBoundTag(Tag tag, IEnumerable<TagValueLabel> tagValueLabels, string tagName)
         {

@@ -67,7 +67,7 @@ namespace SurveyDomain
                 do {
                     surveyQuestion = _questionRepository.GetQuestionAfterFx(project, (int)lastOrder, tagValues, tagIds);
                     lastOrder = surveyQuestion == null ? (int?)null : surveyQuestion.QuestionOrder;
-                } while (surveyQuestion != null && (interview.ShouldSkip(surveyQuestion) && interview.shouldSkipForTestFx(surveyQuestion, startOrder)));      //  interview.shouldSkipForTestFx(surveyQuestion)));
+                } while (surveyQuestion != null && (interview.ShouldSkip(surveyQuestion) && interview.shouldSkipForTestFx(surveyQuestion, startOrder)));
                 order = lastOrder;
             }
             var nextQuestionOrder = order;
@@ -85,7 +85,10 @@ namespace SurveyDomain
             question.ValidateAnswer(interviewAnswer, interview);
             SaveAnswer(questionId, interviewAnswer, question, interview);
             if (question.BoundTagId != null)
-                SaveTagValue(interview, question.BoundTag, interviewAnswer.Answers.Select(answer => question.AnswerVariants.Single(variant => variant.AnswerCode == answer)));
+                if (question.HasSingleAnswer) 
+                    SaveRankTagValue(interview, question.BoundTag, interviewAnswer.Answers.ElementAt(0));
+                else
+                    SaveTagValue(interview, question.BoundTag, interviewAnswer.Answers.Select(answer => question.AnswerVariants.Single(variant => variant.AnswerCode == answer)));
 
             foreach (SubQuestion subQuestion in question.SubQuestions)
                 if (subQuestion.BoundTagId.HasValue)
@@ -121,6 +124,19 @@ namespace SurveyDomain
                                                 TagId = boundTag.TagId,
                                                 Value = tagValue
                                             });
+        }
+
+        private void SaveRankTagValue(Interview interview, Tag boundTag, int value)
+        {
+            var tagValues = interview.TagValues.Where(tv => tv.TagId == boundTag.TagId).ToArray();
+            _tagValueRepository.DeleteRange(tagValues);
+            _tagValueRepository.Add(new TagValue {
+                Interview = interview,
+                InterviewId = interview.InterviewId,
+                Tag = boundTag,
+                TagId = boundTag.TagId,
+                Value = value
+            });
         }
 
         public Interview StartInterview(Respondent currentRespondent, int project, int[] specCodes = null)

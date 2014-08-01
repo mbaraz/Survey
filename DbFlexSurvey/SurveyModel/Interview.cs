@@ -83,22 +83,7 @@ namespace SurveyModel
             return TestInterview && question.ConditionOnTagOrder >= startOrder && question.FilterAnswersTagOrder >= startOrder;
         }
 
-/*
-        public bool shouldSkipForTestFx(SurveyQuestion question)
-        {
-            if (question.ConditionOnTagId == null && question.FilterAnswersTagId == null)
-                return true;
-
-            return TagValues.Any(tagValue => tagValue.TagId == question.ConditionOnTagId || tagValue.TagId == question.FilterAnswersTagId); ;
-        }
-
-        private bool notSkipForTestFx(int? requiredValue)
-        {
-            var hasNoTagValues = requiredValue == null || TagValues.Count == 0 || TagValues.All(tagValue => tagValue.TagId != requiredValue);
-            return TestInterview && hasNoTagValues;
-        }
-*/
-// Необходимо только для опроса студентов, чтобы пропускать вопросы о дисциплинах, которых либо не было, либо  вел другой преподаватель
+        // Необходимо только для опроса студентов, чтобы пропускать вопросы о дисциплинах, которых либо не было, либо  вел другой преподаватель
         private bool DispStudentSkip(SurveyQuestion question)
         {
             if (!question.QuestionName.Contains("Disp") || Answers.Count == 0)
