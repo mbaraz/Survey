@@ -1,5 +1,4 @@
 ﻿@using SurveyModel
-@using SurveyWeb.Models
 @model SurveyWeb.Models.QuestionModel
 
 @helper WriteAnswerHiddenField(AnswerVariant answer)
@@ -28,9 +27,9 @@
 
 @foreach (var answer in Model.AnswerVariants)
 {
-    int maxLength = answer.SymbolCount;
+    int maxLength = Convert.ToInt32(answer.SymbolCount);
     int size = Math.Max(maxLength - 1, 1);
-    bool isNumeric = answer.IsNumeric;
+    bool isNumeric = answer.IsNumeric.HasValue && answer.IsNumeric.Value;
     
     using (Html.BeginForm("Index", "Question", new { surveyId = Model.Question.SurveyProjectId, order = Model.Question.QuestionOrder }))
     {

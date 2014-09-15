@@ -91,7 +91,8 @@ namespace SurveyWeb
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DBSurveyRepository>());
+            Database.SetInitializer<DBSurveyRepository>(null);
+//            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DBSurveyRepository>());
 //            Database.SetInitializer(new DropCreateDatabaseAlways<DBSurveyRepository>());  //  DropCreateDatabaseIfModelChanges
 
             RegisterGlobalFilters(GlobalFilters.Filters);

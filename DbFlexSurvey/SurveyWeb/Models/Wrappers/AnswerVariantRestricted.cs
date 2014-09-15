@@ -1,4 +1,5 @@
-﻿using SurveyModel;
+﻿using System;
+using SurveyModel;
 
 namespace SurveyWeb.Models
 {
@@ -26,8 +27,8 @@ namespace SurveyWeb.Models
         {
             fillModelVariant(variant);
             AnswerText = variant.InstantText;
-            SymbolCount = variant.SymbolCount;
-            IsNumeric = variant.IsOpenAnswer && variant.IsNumeric;
+            SymbolCount = Convert.ToInt32(variant.SymbolCount);
+            IsNumeric = variant.IsNumeric.HasValue && (variant.IsOpenAnswer && variant.IsNumeric.Value);
         }
 
         private void fillModelVariant(AnswerVariant variant)
@@ -38,10 +39,10 @@ namespace SurveyWeb.Models
             AnswerOrder = variant.AnswerOrder;
             TagValue = variant.TagValue;
             IsOpenAnswer = variant.IsOpenAnswer;
-            IsExcludingAnswer = variant.IsExcludingAnswer;
+            IsExcludingAnswer = variant.IsExcludingAnswer.HasValue && variant.IsExcludingAnswer.Value;
 //            SymbolCount = variant.SymbolCount;
 //            IsNumeric = variant.IsNumeric;
-            IsUnmoved = variant.IsUnmoved;
+            IsUnmoved = variant.IsUnmoved.HasValue && variant.IsUnmoved.Value;
         }
     }
 }

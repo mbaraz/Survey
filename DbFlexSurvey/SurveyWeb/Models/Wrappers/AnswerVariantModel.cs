@@ -1,4 +1,5 @@
-﻿using SurveyModel;
+﻿using System;
+using SurveyModel;
 
 namespace SurveyWeb.Models
 {
@@ -38,8 +39,8 @@ namespace SurveyWeb.Models
         {
             fillModelVariant(av);
             AnswerText = av.InstantText;
-            SymbolCount = av.SymbolCount;
-            IsNumeric = av.IsOpenAnswer && av.IsNumeric;
+            SymbolCount = Convert.ToInt32(av.SymbolCount);
+            IsNumeric = av.IsNumeric.HasValue && (av.IsOpenAnswer && av.IsNumeric.Value);
         }
 
         private void fillModelVariant(AnswerVariant avFrom)

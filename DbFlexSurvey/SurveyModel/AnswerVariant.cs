@@ -16,14 +16,14 @@ namespace SurveyModel
         public string AnswerText { get; set; }
         public bool IsOpenAnswer { get; set; }
 
-        public bool IsExcludingAnswer { get; set; }
-		public int SymbolCount  { get; set; }
-		public bool IsNumeric { get; set; }
-        public bool IsUnmoved { get; set; }
-
         public int AnswerCode { get; set; }
         public int AnswerOrder { get; set; }
         public int? TagValue { get; set; }
+
+        public bool? IsExcludingAnswer { get; set; }
+        public int? SymbolCount { get; set; }
+        public bool? IsNumeric { get; set; }
+        public bool? IsUnmoved { get; set; }
 
         public string InstantText { get { return (AnswerText == null) ? AnswerText : AnswerText.Split(TextPartsDelimiter)[0]; } }
 /*
