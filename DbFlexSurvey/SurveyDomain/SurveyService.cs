@@ -84,15 +84,18 @@ namespace SurveyDomain
             var interview = _surveyProjectRepository.GetById(question.SurveyProjectId).Interviews.Single(interv => interv.RespondentId == respondentId);
             question.ValidateAnswer(interviewAnswer, interview);
             SaveAnswer(questionId, interviewAnswer, question, interview);
-            if (question.BoundTagId != null)
-                if (question.HasSingleAnswer) 
-                    SaveRankTagValue(interview, question.BoundTag, interviewAnswer.Answers.ElementAt(0));
+            if (question.BoundTagId.HasValue)
+                if (question.HasSingleAnswer)
+                    SaveTagValue(interview, question.BoundTag, interviewAnswer.Rank.Single(rank => rank.Key == 1).Value);
                 else
                     SaveTagValue(interview, question.BoundTag, interviewAnswer.Answers.Select(answer => question.AnswerVariants.Single(variant => variant.AnswerCode == answer)));
 
             foreach (SubQuestion subQuestion in question.SubQuestions)
                 if (subQuestion.BoundTagId.HasValue)
-                    SaveTagValue(interview, subQuestion.BoundTag, interviewAnswer.Rank.Where(rank => rank.Key == subQuestion.SubOrder).Select(rank => question.AnswerVariants.Single(variant => (variant.AnswerCode == rank.Value))));
+                    if (question.HasNoAnswer)
+                        SaveTagValue(interview, subQuestion.BoundTag, interviewAnswer.Rank.SingleOrDefault(rank => rank.Key == subQuestion.SubOrder).Value);
+                    else
+                        SaveTagValue(interview, subQuestion.BoundTag, interviewAnswer.Rank.Where(rank => rank.Key == subQuestion.SubOrder).Select(rank => question.AnswerVariants.Single(variant => (variant.AnswerCode == rank.Value))));
             
             return true;
         }
@@ -126,7 +129,7 @@ namespace SurveyDomain
                                             });
         }
 
-        private void SaveRankTagValue(Interview interview, Tag boundTag, int value)
+        private void SaveTagValue(Interview interview, Tag boundTag, int value)
         {
             var tagValues = interview.TagValues.Where(tv => tv.TagId == boundTag.TagId).ToArray();
             _tagValueRepository.DeleteRange(tagValues);

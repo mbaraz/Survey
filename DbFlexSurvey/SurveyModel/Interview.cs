@@ -32,7 +32,7 @@ namespace SurveyModel
             if (question.ConditionOnTagId.HasValue)
                 return ShouldSkip(question.ConditionOnTagId, question.ConditionOnTagValue) || (question.FilterAnswersTagId != null && !GetFilteredAnswers(question).Any() || DispStudentSkip(question));
 
-            return ShouldSkip(question.ConditionString) || (question.FilterAnswersTagId != null && !GetFilteredAnswers(question).Any()) || (question.IsGridQuestion && !GetFilteredSubitems(question).Any());
+            return ShouldSkip(question.ConditionString) || (question.FilterAnswersTagId != null && !GetFilteredAnswers(question).Any()) || (question.IsCompositeQuestion && !GetFilteredSubitems(question).Any());
         }
 
         public int? GetPrevQuestion(int? lastOrder)
@@ -110,14 +110,14 @@ namespace SurveyModel
 
         private bool ShouldSkip(string conditionString)
         {
-            if (conditionString == string.Empty)
+            if (conditionString == null || conditionString == string.Empty)
                 return false;
 
             var tagCondition = new TagCondition(conditionString);
             var tagIds = tagCondition.TagIds;
             var res = TagValues.Where(tagValue => tagIds.Contains(tagValue.TagId));
 
-            return !tagCondition.check(res);
+            return !tagCondition.check(res, TestInterview);
         }
 
         private IEnumerable<SubQuestion> GetFilteredSubitemsOld(SurveyQuestion surveyQuestion, int startOrder)

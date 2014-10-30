@@ -40,8 +40,12 @@ namespace SurveyModel
         public IEnumerable<AnswerPart> Parts
         {
             get {
-// Flex Grid
-                if (!SurveyQuestion.IsGridQuestion)
+                if (SurveyQuestion.HasSingleAnswer) {
+                    var res = new AnswerPart[1];
+                    res[0] = new AnswerPart(null, null, Answers.ElementAt(0));
+                    return res;
+                }
+                if (!SurveyQuestion.IsCompositeQuestion) // IsGridQuestion ???
                     return Answers.Select(answer => new AnswerPart(SurveyQuestion.AnswerVariants.Single(av => av.AnswerCode == answer), OpenAnswers.ContainsKey(answer) ? OpenAnswers[answer]: null, Rank.ContainsKey(answer) ? Rank[answer] : (int?) null));
 
                 var result = new AnswerPart[Rank.Count];
@@ -51,7 +55,7 @@ namespace SurveyModel
                 return result;
             }
         }
-// End Flex
+
         public class AnswerPart
         {
             public AnswerVariant Answer { get; private set; }

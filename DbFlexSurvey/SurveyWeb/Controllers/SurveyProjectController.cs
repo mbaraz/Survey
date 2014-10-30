@@ -253,9 +253,10 @@ namespace SurveyWeb.Controllers
         [Authorize(Roles = "Staff")]
         public ActionResult FxEditor(int surveyProjectId)
         {
-            if (CurrentRespondent.MembershipUserName != "asd" && CurrentRespondent.MembershipUserName != "mbaraz" && CurrentRespondent.MembershipUserName != "ksenia")
+/*
+            if (CurrentRespondent.MembershipUserName != "asd" && CurrentRespondent.MembershipUserName != "mbaraz" && CurrentRespondent.MembershipUserName != "ksenia" && CurrentRespondent.MembershipUserName != "tmprus")
                 return RedirectToAction("Details", new { surveyProjectId });
-
+*/
             var project = _projectRepository.GetById(surveyProjectId);
             ViewBag.Title = project.SurveyProjectName;
             return View(surveyProjectId);

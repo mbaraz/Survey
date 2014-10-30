@@ -27,9 +27,7 @@ namespace SurveyDomain.DataExport
         {
             yield return new IdVariable();
             foreach (var variable in GetQuestions.SelectMany(GetVariablesForQuestion))
-            {
                 yield return variable;
-            }
         }
 
         protected virtual IEnumerable<SurveyQuestion> GetQuestions
@@ -82,26 +80,41 @@ namespace SurveyDomain.DataExport
 
         private static IEnumerable<Variable> GetVariablesForQuestion(SurveyQuestion surveyQuestion)
         {
-            if (surveyQuestion.MultipleAnswerAllowed) {
-                if (surveyQuestion.IsGridQuestion) {
-                    var cnt = 1;
-                    foreach (var subitem in surveyQuestion.SubitemsStrings)
-                        yield return new GridQuestionVariable(surveyQuestion, subitem, cnt++);
-                } else
-                    foreach (var answer in surveyQuestion.OrderedAnswerVariants) {
-                        if (surveyQuestion.IsRankQuestion)
-                            yield return new RankVariable(answer);
-                        else
-                            yield return new AnswerVariable(answer);
-                        if (answer.IsOpenAnswer)
-                            yield return new OpenAnswerVariable(answer);
-                    }
-            } else {
-                yield return new QuestionVariable(surveyQuestion);
-                foreach (var answer in surveyQuestion.OrderedAnswerVariants.Where(variant => variant.IsOpenAnswer))
+            if (surveyQuestion.IsOldFashioned && surveyQuestion.IsGridQuestion || surveyQuestion.IsCompositeQuestion)
+                return GetVariablesForCompositeQuestion(surveyQuestion);
+
+            if (surveyQuestion.MultipleAnswerAllowed)
+                return GetVariablesForMultipleAnswerQuestion(surveyQuestion);
+
+            return GetVariablesForSingleAnswerQuestion(surveyQuestion);
+        }
+
+        private static IEnumerable<Variable> GetVariablesForCompositeQuestion(SurveyQuestion surveyQuestion)
+        {
+            var cnt = 1;
+            foreach (var subStrings in surveyQuestion.SubitemsStrings)
+                yield return new CompositeQuestionVariable(surveyQuestion, subStrings, cnt++);
+        }
+
+        private static IEnumerable<Variable> GetVariablesForMultipleAnswerQuestion(SurveyQuestion surveyQuestion)
+        {
+            foreach (var answer in surveyQuestion.OrderedAnswerVariants) {
+                if (surveyQuestion.IsRankQuestion)
+                    yield return new RankVariable(answer);
+                else
+                    yield return new AnswerVariable(answer);
+                if (answer.IsOpenAnswer)
                     yield return new OpenAnswerVariable(answer);
             }
         }
+
+        private static IEnumerable<Variable> GetVariablesForSingleAnswerQuestion(SurveyQuestion surveyQuestion)
+        {
+            yield return new QuestionVariable(surveyQuestion);
+            foreach (var answer in surveyQuestion.OrderedAnswerVariants.Where(variant => variant.IsOpenAnswer))
+                yield return new OpenAnswerVariable(answer);
+        }
+
 
         private class QuestionVariable : Variable
         {
@@ -120,9 +133,15 @@ namespace SurveyDomain.DataExport
 
             public override IEnumerable<KeyValuePair<int, string>> ValueLabels
             {
-                get
-                {
-                    return SurveyQuestion.OrderedAnswerVariants.Select(av => new KeyValuePair<int, string>(av.AnswerCode, av.InstantText));
+                get {
+                    if (SurveyQuestion.AnswerVariants.Any() && !SurveyQuestion.HasSingleAnswer)
+                        return SurveyQuestion.OrderedAnswerVariants.Select(av => new KeyValuePair<int, string>(av.AnswerCode, av.InstantText));
+
+                    var result = new List<KeyValuePair<int, string>>();
+                    for (int i = Convert.ToInt32(SurveyQuestion.MinRank); i <= SurveyQuestion.MaxRank; i++)
+                        result.Add(new KeyValuePair<int, string>(i, i.ToString(CultureInfo.InvariantCulture)));
+
+                    return result;
                 }
             }
 
@@ -137,9 +156,9 @@ namespace SurveyDomain.DataExport
         }
 
 // Flex Grid
-        private class GridQuestionVariable : QuestionVariable
+        private class CompositeQuestionVariable : QuestionVariable
         {
-            public GridQuestionVariable(SurveyQuestion surveyQuestion, string subitem, int index) : base(surveyQuestion)
+            public CompositeQuestionVariable(SurveyQuestion surveyQuestion, string subitem, int index) : base(surveyQuestion)
             {
                 Subitem = subitem;
                 Index = index;
@@ -179,8 +198,7 @@ namespace SurveyDomain.DataExport
 
             public override string Name
             {
-                get
-                {
+                get {
 //                    AnswerVariant answer = Answer;
                     return Answer.SurveyQuestion.QuestionName + "_" + Answer.AnswerCode;
                 }
@@ -200,8 +218,7 @@ namespace SurveyDomain.DataExport
 
             public override IEnumerable<KeyValuePair<int, string>> ValueLabels
             {
-                get
-                {
+                get {
                     yield return new KeyValuePair<int, string>(0, "Нет");
                     yield return new KeyValuePair<int, string>(1, "Да");
                 }

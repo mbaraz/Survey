@@ -43,17 +43,29 @@ namespace SurveyModel
             get { return MaxRank != null && MaxRank != 0; }
         }
 // Flex
-        public bool IsRatingOrRankingQuestion { get { return QuestionType == 2 || QuestionType == 3; } }
+//        private bool IsRatingOrRankingQuestion { get { return QuestionType == 2 || QuestionType == 3; } }
 
         public bool HasSingleAnswer { get { return QuestionType == 4 || QuestionType == 5; } }
 
-        public bool IsDrageQuestion { get { return QuestionType == 6; } }
+        public bool HasNoAnswer { get { return QuestionType == 2 || QuestionType == 3 || QuestionType == 6; } }
 // For Grid Question
         public bool IsGridQuestion { get { return QuestionType >= 7 || (IsRankQuestion && QuestionText.Contains(AnswerVariant.TextPartsDelimiter)); } }
 
+        public bool IsCompositeQuestion { get { return QuestionType >= 2 && !HasSingleAnswer; } }
+
+//        private bool IsDragQuestion { get { return QuestionType == 6; } }
+
         public string InstantText { get { return (QuestionText == null) ? QuestionText : QuestionText.Split(AnswerVariant.TextPartsDelimiter)[0]; } }
 
-        public IEnumerable<string> SubitemsStrings { get { return QuestionText.Split(AnswerVariant.TextPartsDelimiter).Skip(1); } }
+        public IEnumerable<string> SubitemsStrings
+        {
+            get {
+                if (IsOldFashioned)
+                    return QuestionText.Split(AnswerVariant.TextPartsDelimiter).Skip(1);
+
+                return OrderedSubQuestions.Select(sq => sq.QuestionText);
+            }
+        }
 
         public bool IsOldFashioned { get { return QuestionType == null; } }
 // End Flex
@@ -91,17 +103,21 @@ namespace SurveyModel
             if (interviewAnswer.Answers.Count < MinAnswersCount && QuestionName != "OptionalSelector")
                 throw new QuestionTooMinAnswersException();
 // Flex
-            if (HasSingleAnswer || IsGridQuestion)
+            if (HasSingleAnswer || IsCompositeQuestion)
                 return;
 // End Flex
             if (interviewAnswer.Answers.Count > MaxAnswersCount)
                 throw new QuestionTooManyAnswersException();
+// Flex: For Grid Question
+//  ?????            if (IsGridQuestion)
+                return;
 
             CheckNoUncorrectAnswers<UnknownAnswerException>(interviewAnswer.Answers.Where(a => AnswerVariants.All(av => av.AnswerCode != a)));
 
-// Flex: For Rating or Ranking Question
+/* Flex: For Rating or Ranking Question
             if (IsRatingOrRankingQuestion)
                 return;
+*/ 
 // End Flex
             CheckNoUncorrectAnswers<OpenAnswerHasNoOpenPartException>(AnswerVariants.Where(
                 av => av.IsOpenAnswer && interviewAnswer.Answers.Contains(av.AnswerCode) &&
@@ -113,7 +129,7 @@ namespace SurveyModel
             if (!IsRankQuestion && interviewAnswer.Rank.Any())
                 throw new QuestionHasUnexpectedRanksException();
 
-            if (IsRankQuestion && !IsDrageQuestion) {
+            if (IsRankQuestion) {
                 CheckNoUncorrectAnswers<RankAnswerNoRankPartException>(interview.GetFilteredAnswers(this).Where(av => !interviewAnswer.Rank.ContainsKey(av.AnswerCode)));
                 CheckNoUncorrectAnswers<RankAnswerWrongException>(interviewAnswer.Rank.Where(r => r.Value > MaxRank).Select(r => r.Key));
                 CheckNoUncorrectAnswers<RankAnswerWrongException>(interviewAnswer.Rank.Where(r => r.Value < RANK_FAILED_TO_ANSWER).Select(r => r.Key));
@@ -149,6 +165,11 @@ namespace SurveyModel
             get { return AnswerVariants.OrderBy(variant => variant.AnswerOrder); }
         }
 
+        public IEnumerable<AnswerVariant> FxOrderedAnswerVariants
+        {
+            get { return AnswerVariants.OrderBy(variant => variant.AnswerOrder); }
+        }
+
         public IEnumerable<SubQuestion> OrderedSubQuestions
         {
             get { return SubQuestions.OrderBy(sq => sq.SubOrder); }
@@ -159,15 +180,19 @@ namespace SurveyModel
             QuestionOrder = question.QuestionOrder;
             QuestionName = question.QuestionName;
             QuestionText = question.QuestionText;
+            QuestionType = question.QuestionType;
+            AnswerOrdering = question.AnswerOrdering;
             MultipleAnswerAllowed = question.MultipleAnswerAllowed;
             MaxAnswers = question.MaxAnswers;
             MinAnswers = question.MinAnswers;
             BoundTagId = question.BoundTagId;
+            ConditionString = question.ConditionString;
             ConditionOnTagId = question.ConditionOnTagId;
             ConditionOnTagValue = question.ConditionOnTagValue;
             FilterAnswersTagId = question.FilterAnswersTagId;
             MaxRank = question.MaxRank;
-       }
+            MinRank = question.MinRank;
+        }
 
         public void SetBoundTagValue(int? boundTagId)
         {

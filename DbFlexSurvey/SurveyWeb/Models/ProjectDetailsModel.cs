@@ -11,9 +11,9 @@ namespace SurveyWeb.Models
         public ProjectDetailsModel(SurveyProject surveyProject)
         {
             Project = surveyProject;
-            Tickets =
+/*            Tickets =
                 surveyProject.Invitations.Where(invitation => invitation.TicketId != null).Select(
-                    invitation => invitation.Ticket).Distinct().ToArray();
+                    invitation => invitation.Ticket).Distinct().ToArray();  */
             CreateTicketModel = new CreateTicketModel
                                     {
                                         SurveyProjectId = surveyProject.SurveyProjectId
@@ -22,7 +22,7 @@ namespace SurveyWeb.Models
 
         public SurveyProject Project { get; set; }
 
-        public ICollection<Ticket> Tickets { get; set; }
+//        public ICollection<Ticket> Tickets { get; set; }
 
         public CreateTicketModel CreateTicketModel { get; set; }
     }

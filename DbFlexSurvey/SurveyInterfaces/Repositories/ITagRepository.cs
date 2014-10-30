@@ -10,5 +10,6 @@ namespace SurveyInterfaces.Repositories
         void Delete(int id);
         void deleteDeleted();
         void save(SurveyQuestion question, ICollection<SubQuestion> subQuestions);
+        void updateConditionString(SurveyQuestion question);
     }
 }

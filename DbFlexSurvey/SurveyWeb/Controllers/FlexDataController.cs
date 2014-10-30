@@ -62,22 +62,15 @@ namespace SurveyWeb.Controllers
         [ValidateInput(false)]
         public ContentResult ReceiveAllQuestions(int surveyId, string models, string deletedQuestionIds, string deletedSubQuestionIds, string deletedAnswerIds, string deletedTagIds)
         {
-            string message = "No edit";
             var project = ProjectRepository.GetById(surveyId);
             if (_interviewRepository.hasNotTestInterview(project))
-                return Content(message);
+                return Content("No edit");
 
             _interviewRepository.DeleteAll(project);
-            message = string.Empty;
             fillDeleted(deletedQuestionIds, deletedSubQuestionIds, deletedAnswerIds, deletedTagIds);
-            saveModels(JSONObject.CreateFromString(models).Array);
+            var questions = saveModels(JSONObject.CreateFromString(models).Array);
             removeDeleted();
-            try {
-                UnitOfWork.Save();
-            } catch (InvalidOperationException exception) {
-                message = "Can't save all. " + exception.Message;
-            }
-            return Content(message);
+            return Content(trySaveAll(questions));
         }
 
         [HttpPost]
@@ -135,7 +128,7 @@ namespace SurveyWeb.Controllers
                 return Content("No question");
 
             var variants = interview.GetFilteredAnswersFx(question, startOrder).Select(av => new AnswerVariantRestricted(av));
-            if (!variants.Any())
+            if ((!question.IsCompositeQuestion || question.IsGridQuestion) && !variants.Any())
                 return Content("No answers");
 
             var subitems = interview.GetFilteredSubitemsFx(question, startOrder).Select(sq => new SubQuestionRestricted(sq));
@@ -175,8 +168,10 @@ namespace SurveyWeb.Controllers
             return ranks.ToDictionary(rank => rank.Array[0].Integer, rank => rank.Array[1].Integer);
         }
 
-        private void saveModels(IEnumerable<JSONObject> models)
+        private SurveyQuestion[] saveModels(IEnumerable<JSONObject> models)
         {
+            var result = new SurveyQuestion[models.Count()];
+            var i = 0;
             foreach (var model in models) {
                 var qm = model.QuestionModel;
                 var question = qm.Question;
@@ -187,7 +182,9 @@ namespace SurveyWeb.Controllers
                 question.AnswerVariants = new Collection<AnswerVariant>();
                 _answerVariantRepository.save(question, qm.AnswerVariants);
                 _tagRepository.save(question, qm.SubQuestions);
+                result[i++] = question;
             }
+            return result;
         }
 
         private void fillDeleted(string deletedQuestionIds, string deletedSubQuestionIds, string deletedAnswerIds, string deletedTagIds)
@@ -206,6 +203,22 @@ namespace SurveyWeb.Controllers
             _surveyQuestionRepository.deleteDeleted();
         }
 
+        private string trySaveAll(IEnumerable<SurveyQuestion> questions)
+        {
+            var result = string.Empty;
+            try {
+                UnitOfWork.Save();
+                foreach (var question in questions) {
+                    _tagRepository.updateConditionString(question);
+                    _surveyQuestionRepository.Edit(question);
+                }
+                UnitOfWork.Save();
+
+            } catch (InvalidOperationException exception) {
+                result = "Can't save all. " + exception.Message;
+            }
+            return result;
+        }
 
         private class InterviewAnswer : IInterviewAnswer
         {

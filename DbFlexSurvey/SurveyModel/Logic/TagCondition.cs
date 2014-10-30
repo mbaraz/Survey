@@ -15,11 +15,11 @@ namespace SurveyModel.Logic
             expressionsArray = conditionsArray.Select(cn => new LogicalExpression(cn));
 		}
 
-        internal bool check(IEnumerable<TagValue> tagValues) {
+        internal bool check(IEnumerable<TagValue> tagValues, bool isTestInterview) {
             var result = false;
             foreach (var expression in expressionsArray) {
                 var responseArray = tagValues.Where(tv => tv.TagId == expression.TagId).OrderBy(tv => tv.Value).Select(tv => tv.Value.Value).ToArray();
-                result = expression.check(responseArray, result);
+                result = (isTestInterview || responseArray.Any()) && expression.check(responseArray, result);
 			}
             return result;
 		}

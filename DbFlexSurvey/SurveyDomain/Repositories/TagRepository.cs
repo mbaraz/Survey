@@ -70,6 +70,15 @@ namespace SurveyDomain.Repositories
                 saveSub(question, subQuestion);
         }
 
+        public void updateConditionString(SurveyQuestion question)
+        {
+            if (question.ConditionString == string.Empty)
+                return;
+
+            foreach (var tag in _unsavedTags)
+                question.ConditionString = question.ConditionString.Replace(tag.Key.ToString() + " =", tag.Value.TagId.ToString() + " =");
+        }
+
         private void save(SurveyQuestion question)
         {
             updateConditionAndFilterIds(question);
